@@ -67,7 +67,7 @@ What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-bas
 
 * **/Docs** - Project Related documentations.
 * **/RoboPlus Files** - Motion,Task, and Design Files generated using Robotis RoboPlus 1.x.
-* **/Research Paper Task** - Related robotics research documents.
+* **/Research Paper** - Related robotics research documents.
 
 #Version History
 
