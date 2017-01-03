@@ -1,0 +1,9 @@
+﻿version 3.00
+cm_version 1.0
+platform CM-700
+o main
+o begin
+o load param_dest:s1:100:18 param_src:buzzertime_num:255
+o load param_dest:s1:100:17 param_src:melody_num:3
+o load param_dest:motion:1:50 param_src:dec_num:1
+o end

@@ -1,4 +1,4 @@
-# MuthSpider
+﻿# MuthSpider
 
 ![MuthSpider](https://s3-eu-west-1.amazonaws.com/muthspider/img/MuthSpider.png)<br>
 
@@ -66,8 +66,8 @@ What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-bas
 #Repository Contents
 
 * **/Docs** - Project Related documentations.
-* **/RoboPlus Motion** - Motion Files generated using Robotis RoboPlus Motion 1.0.
-* **/RoboPlus Task** - Task Files generated using Robotis RoboPlus Task 1.0.
+* **/RoboPlus Files** - Motion,Task, and Design Files generated using Robotis RoboPlus 1.x.
+* **/Research Paper Task** - Related robotics research documents.
 
 #Version History
 

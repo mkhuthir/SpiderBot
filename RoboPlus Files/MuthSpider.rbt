@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RobotInfo>
+  <General>
+    <Name>Muthanna Spider</Name>
+    <Motor id="1" model="ax-12" init="512"></Motor>
+    <Motor id="2" model="ax-12" init="512"></Motor>
+    <Motor id="3" model="ax-12" init="512"></Motor>
+    <Motor id="4" model="ax-12" init="512"></Motor>
+    <Motor id="5" model="ax-12" init="512"></Motor>
+    <Motor id="6" model="ax-12" init="512"></Motor>
+    <Motor id="7" model="ax-12" init="512"></Motor>
+    <Motor id="8" model="ax-12" init="512"></Motor>
+    <Motor id="9" model="ax-12" init="512"></Motor>
+    <Motor id="10" model="ax-12" init="512"></Motor>
+    <Motor id="11" model="ax-12" init="512"></Motor>
+    <Motor id="12" model="ax-12" init="512"></Motor>
+    <Motor id="13" model="ax-12" init="512"></Motor>
+    <Motor id="14" model="ax-12" init="512"></Motor>
+    <Motor id="15" model="ax-12" init="512"></Motor>
+    <Motor id="16" model="ax-12" init="512"></Motor>
+    <Motor id="17" model="ax-12" init="512"></Motor>
+    <Motor id="18" model="ax-12" init="512"></Motor>
+  </General>
+
+<Object3D>
+        <Part name ="ax-12" T="10 0 0 0 0 0 0 0 0 0 0 0" id="1" type="body"></Part>
+  </Object3D>
+</RobotInfo>
