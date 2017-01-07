@@ -1,0 +1,96 @@
+﻿version 4.00
+cm_version 1.0
+platform CM-700
+o // param_text:(c) Muthanna A. Attyah
+o // param_text:Created : 1 / 7 / 2017
+- 
+o main
+o begin
+o while(1)
+o begin
+o if param_src:cm:1 lop:== param_src:rc100z_num:1 rop:then
+o begin
+o call faddr_dest:stepU
+o end
+o if param_src:cm:1 lop:== param_src:rc100z_num:2 rop:then
+o begin
+o call faddr_dest:stepD
+o end
+o if param_src:cm:1 lop:== param_src:rc100z_num:4 rop:then
+o begin
+o call faddr_dest:stepL
+o end
+o if param_src:cm:1 lop:== param_src:rc100z_num:8 rop:then
+o begin
+o call faddr_dest:stepR
+o end
+o if param_src:cm:1 lop:== param_src:rc100z_num:16 rop:then
+o begin
+o call faddr_dest:HeadScan
+o end
+o if param_src:cm:1 lop:== param_src:rc100z_num:32 rop:then
+o begin
+o call faddr_dest:HeadScan2
+o end
+o end
+o end
+o function faddr_src:stepU
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:1
+o end
+o function faddr_src:stepD
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:2
+o end
+o function faddr_src:stepL
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:3
+o end
+o function faddr_src:stepR
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:4
+o end
+o function faddr_src:HeadScan
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:5
+o end
+o function faddr_src:HeadScan2
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:6
+o end
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 

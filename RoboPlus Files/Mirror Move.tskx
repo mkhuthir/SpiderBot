@@ -1,0 +1,88 @@
+﻿version 4.00
+cm_version 1.0
+platform CM-700
+o // param_text:(C) Muthanna A. Attyah
+o // param_text:Created 07 Dec 2017
+o // param_text:Mirror poistion of front-left leg to all other 5 legs 
+- 
+o main
+o begin
+o // param_text:Turn on all joints on robot
+o load param_dest:motor4:254:100 param_src:bool_num:1
+- 
+o // param_text:Turn off front-left leg motors (IDs 1,2,3) to be used to control other 5 legs
+o load param_dest:motor:1:100 param_src:bool_num:0
+o load param_dest:motor:2:100 param_src:bool_num:0
+o load param_dest:motor:3:100 param_src:bool_num:0
+- 
+o // param_text:Read front-left leg motors values, calculate symmetric values to set other 5 legs
+o while(1)
+o begin
+o // param_text:Mid-Left leg (IDs 7,8,9)
+- 
+o // param_text:ID[7]=ID[1] - 45 Degree
+o compute param_dest:motor:7:106 param_src:motor:1:109 aop:- param_src:dec_num:153
+o load param_dest:motor:8:106 param_src:motor:2:109
+o load param_dest:motor:9:106 param_src:motor:3:109
+- 
+o // param_text:Back-left leg (IDs 13,14,15)
+o // param_text:ID[13]=ID[1] - 90 Degree
+o compute param_dest:motor:13:106 param_src:motor:1:109 aop:- param_src:dec_num:306
+o load param_dest:motor:14:106 param_src:motor:2:109
+o load param_dest:motor:15:106 param_src:motor:3:109
+- 
+o // param_text:Right side motors is mirror (1023-value) of left side motors
+o // param_text:Front-Right leg (IDs 4,5,6)
+o // param_text:Mirror of ID[x]=1023 - ID[x]
+o compute param_dest:motor:4:106 param_src:dec_num:1023 aop:- param_src:motor:1:109
+o compute param_dest:motor:5:106 param_src:dec_num:1023 aop:- param_src:motor:2:109
+o compute param_dest:motor:6:106 param_src:dec_num:1023 aop:- param_src:motor:3:109
+- 
+o // param_text:Mid-Right leg (IDs 10,11,12)
+o // param_text:ID[10]=Mirror ID[1] + 45 Degree
+o compute param_dest:motor:10:106 param_src:dec_num:1176 aop:- param_src:motor:1:109
+o compute param_dest:motor:11:106 param_src:dec_num:1023 aop:- param_src:motor:2:109
+o compute param_dest:motor:12:106 param_src:dec_num:1023 aop:- param_src:motor:3:109
+- 
+o // param_text:Back-Right leg (IDs 16,17,18)
+o // param_text:ID[16]=Mirror ID[1] + 90 Degree
+o compute param_dest:motor:16:106 param_src:dec_num:1329 aop:- param_src:motor:1:109
+o compute param_dest:motor:17:106 param_src:dec_num:1023 aop:- param_src:motor:2:109
+o compute param_dest:motor:18:106 param_src:dec_num:1023 aop:- param_src:motor:3:109
+- 
+o end
+o end
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 

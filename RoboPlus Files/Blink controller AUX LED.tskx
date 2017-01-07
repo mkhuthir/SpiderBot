@@ -1,0 +1,57 @@
+﻿version 4.00
+cm_version 1.0
+platform CM-700
+o // param_text:(C) Muthanna A. Attyah 2017
+o // param_text:Initial Release : 07 Dec 2017
+o // param_text:Last Modified : 07 Dec 2017
+o // param_text:---------------------------------------------------
+o // param_text:Blink controller AUX LED every 0.5 Sec
+- 
+o main
+o begin
+o while(1)
+o begin
+o load param_dest:cm:3 param_src:bool_num:1
+o call faddr_dest:wait
+o load param_dest:cm:3 param_src:bool_num:0
+o call faddr_dest:wait
+o end
+o end
+o function faddr_src:wait
+o begin
+o load param_dest:cm:5 param_src:timer_num:4
+o wait param_src:cm:5 lop:> param_src:timer_num:0 rop:then
+o end
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
