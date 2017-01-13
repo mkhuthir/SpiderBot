@@ -50,6 +50,9 @@ o compute param_dest:motor:16:106 param_src:dec_num:1329 aop:- param_src:motor:1
 o compute param_dest:motor:17:106 param_src:dec_num:1023 aop:- param_src:motor:2:109
 o compute param_dest:motor:18:106 param_src:dec_num:1023 aop:- param_src:motor:3:109
 - 
+o // param_text:Head Movement (IDs 19, 20)
+o compute param_dest:motor:19:106 param_src:motor:1:109 aop:- param_src:dec_num:153
+o compute param_dest:motor:20:106 param_src:motor:2:109 aop:- param_src:dec_num:256
 o end
 o end
 - 

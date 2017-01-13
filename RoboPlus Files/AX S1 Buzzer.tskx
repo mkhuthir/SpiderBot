@@ -1,0 +1,100 @@
+﻿version 4.00
+cm_version 1.0
+platform CM-700
+o // param_text:Created : 1 / 9 / 2017
+o // param_text:Created : 1 / 9 / 2017
+- 
+o main
+o begin
+o load param_dest:motor:254:100 param_src:bool_num:0
+o load param_dest:var:Direction param_src:dec_num:0
+o load param_dest:var:GoalPos param_src:dec_num:512
+- 
+o load param_dest:motor:19:100 param_src:bool_num:1
+o load param_dest:motor:20:100 param_src:bool_num:1
+- 
+o load param_dest:motor:19:106 param_src:var:GoalPos
+o load param_dest:motor:20:106 param_src:position_num:205
+- 
+o while(1)
+o begin
+o call faddr_dest:CheckLight
+x compute param_dest:var:GoalPos param_src:var:GoalPos aop:+ param_src:var:Direction
+x if param_src:var:GoalPos lop:> param_src:dec_num:1023 rop:then
+x begin
+x load param_dest:var:GoalPos param_src:dec_num:1023
+x end
+x if param_src:var:GoalPos lop:< param_src:dec_num:0 rop:then
+x begin
+x load param_dest:var:GoalPos param_src:dec_num:0
+x end
+o load param_dest:motor:19:106 param_src:var:GoalPos
+o while param_src:motor:19:114 lop:== param_src:bool_num:1 rop:then
+o begin
+- 
+o end
+o end
+o end
+o function faddr_src:CheckLight
+o begin
+o load param_dest:var:CenterLight param_src:s1:100:151
+o load param_dest:var:RightLight param_src:s1:100:152
+o load param_dest:var:LeftLight param_src:s1:100:150
+- 
+o // param_text:If C>=R and C>=L Then Stay same direction
+o if param_src:var:CenterLight lop:> param_src:var:RightLight rop:then
+o begin
+o if param_src:var:CenterLight lop:> param_src:var:LeftLight rop:then
+o begin
+o load param_dest:var:GoalPos param_src:dec_num:512
+o return
+o end
+o end
+o elseif param_src:var:CenterLight lop:> param_src:var:LeftLight rop:then
+o begin
+o load param_dest:var:GoalPos param_src:dec_num:1023
+o return
+o end
+o load param_dest:var:GoalPos param_src:dec_num:0
+o end
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
