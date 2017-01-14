@@ -2,8 +2,8 @@
 cm_version 1.0
 platform CM-700
 o // param_text:(C) Muthanna A. Attyah 2017
-o // param_text:Initial Release : 07 Dec 2017
-o // param_text:Last Modified : 07 Dec 2017
+o // param_text:Initial Release : 07 Jan 2017
+o // param_text:Last Modified : 12 Jan 2017
 o // param_text:---------------------------------------------------
 o // param_text:Blink controller AUX LED every 0.5 Sec
 - 
