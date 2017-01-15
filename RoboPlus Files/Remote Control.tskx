@@ -2,69 +2,120 @@
 cm_version 1.0
 platform CM-700
 o // param_text:(c) Muthanna A. Attyah
-o // param_text:Created : 1 / 7 / 2017
+o // param_text:Created : 7th Jan 2017
+o // param_text:Modified : 15th Jan 2017
+o // param_text:Remote Control example using RC-100
 - 
 o main
 o begin
 o while(1)
 o begin
-o if param_src:cm:1 lop:== param_src:rc100z_num:1 rop:then
+o // param_text:Wait until one key press is received
+o wait param_src:cm:2 lop:== param_src:bool_num:0 rop:then
+o // param_text:Store the received key in variable
+o load param_dest:var:Button param_src:cm:1
+- 
+o // param_text:Call a function based on received key value. (Can be single key or a combination)
+o if param_src:var:Button lop:== param_src:rc100z_num:1 rop:then
 o begin
-o call faddr_dest:stepU
+o call faddr_dest:remote_U
 o end
-o if param_src:cm:1 lop:== param_src:rc100z_num:2 rop:then
+o elseif param_src:var:Button lop:== param_src:rc100z_num:2 rop:then
 o begin
-o call faddr_dest:stepD
+o call faddr_dest:remote_D
 o end
-o if param_src:cm:1 lop:== param_src:rc100z_num:4 rop:then
+o elseif param_src:var:Button lop:== param_src:rc100z_num:8 rop:then
 o begin
-o call faddr_dest:stepL
+o call faddr_dest:remote_R
 o end
-o if param_src:cm:1 lop:== param_src:rc100z_num:8 rop:then
+o elseif param_src:var:Button lop:== param_src:rc100z_num:4 rop:then
 o begin
-o call faddr_dest:stepR
+o call faddr_dest:remote_L
 o end
-o if param_src:cm:1 lop:== param_src:rc100z_num:16 rop:then
+o elseif param_src:var:Button lop:== param_src:rc100z_num:16 rop:then
 o begin
-o call faddr_dest:HeadScan
+o call faddr_dest:remote_1
 o end
-o if param_src:cm:1 lop:== param_src:rc100z_num:32 rop:then
+o elseif param_src:var:Button lop:== param_src:rc100z_num:32 rop:then
 o begin
-o call faddr_dest:HeadScan2
+o call faddr_dest:remote_2
+o end
+o elseif param_src:var:Button lop:== param_src:rc100z_num:64 rop:then
+o begin
+o call faddr_dest:remote_3
+o end
+o elseif param_src:var:Button lop:== param_src:rc100z_num:128 rop:then
+o begin
+o call faddr_dest:remote_4
+o end
+o elseif param_src:var:Button lop:== param_src:rc100z_num:256 rop:then
+o begin
+o call faddr_dest:remote_5
+o end
+o elseif param_src:var:Button lop:== param_src:rc100z_num:512 rop:then
+o begin
+o call faddr_dest:remote_6
+o end
+o elseif param_src:var:Button lop:== param_src:rc100z_num:768 rop:then
+o begin
+o call faddr_dest:remote_5_6
+o end
+o elseif param_src:var:Button lop:== param_src:rc100z_num:0 rop:then
+o begin
+o // param_text:put here action when no remote key is pressed
+o call faddr_dest:remote___
 o end
 o end
 o end
-o function faddr_src:stepU
+o function faddr_src:remote_U
 o begin
 o load param_dest:motion:-:50 param_src:dec_num:1
 o end
-o function faddr_src:stepD
+o function faddr_src:remote_D
 o begin
 o load param_dest:motion:-:50 param_src:dec_num:2
 o end
-o function faddr_src:stepL
+o function faddr_src:remote_R
 o begin
 o load param_dest:motion:-:50 param_src:dec_num:3
 o end
-o function faddr_src:stepR
+o function faddr_src:remote_L
 o begin
 o load param_dest:motion:-:50 param_src:dec_num:4
 o end
-o function faddr_src:HeadScan
+o function faddr_src:remote_1
 o begin
 o load param_dest:motion:-:50 param_src:dec_num:5
 o end
-o function faddr_src:HeadScan2
+o function faddr_src:remote_2
 o begin
 o load param_dest:motion:-:50 param_src:dec_num:6
 o end
-- 
-- 
-- 
-- 
-- 
-- 
-- 
+o function faddr_src:remote_3
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:7
+o end
+o function faddr_src:remote_4
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:8
+o end
+o function faddr_src:remote_5
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:9
+o end
+o function faddr_src:remote_6
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:10
+o end
+o function faddr_src:remote_5_6
+o begin
+o load param_dest:motion:-:50 param_src:dec_num:11
+o end
+o function faddr_src:remote___
+o begin
+o load param_dest:s1:100:18 param_src:dec_num:1
+o load param_dest:s1:100:17 param_src:dec_num:1
+o end
 - 
 - 
 - 
