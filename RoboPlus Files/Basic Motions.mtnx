@@ -25,14 +25,84 @@
     </skeleton>
   </DesignRoot>
   <FlowRoot>
-    <Flow name="motion (1)" return="-1">
+    <Flow name="1 StandingLow" return="-1">
       <units />
+    </Flow>
+    <Flow name="2 Tripod_FW" return="-1">
+      <units>
+        <unit main="2 Tripod_FW" mainSpeed="2" loop="7" exit="" exitSpeed="1" callSite="True" />
+      </units>
+    </Flow>
+    <Flow name="3 Tripod_BW" return="-1">
+      <units>
+        <unit main="3 Tripod_BW" mainSpeed="2" loop="1" exit="" exitSpeed="1" callSite="True" />
+      </units>
+    </Flow>
+    <Flow name="4 HeadScan1" return="0">
+      <units>
+        <unit main="4 HeadScan1" mainSpeed="1" loop="1" exit="" exitSpeed="1" callSite="True" />
+      </units>
+    </Flow>
+    <Flow name="5 HeadScan2" return="-1">
+      <units>
+        <unit main="5 HeadScan2" mainSpeed="1" loop="1" exit="" exitSpeed="1" callSite="True" />
+      </units>
+    </Flow>
+    <Flow name="6 HeadScan3" return="-1">
+      <units>
+        <unit main="6 HeadScan3" mainSpeed="1" loop="1" exit="" exitSpeed="1" callSite="True" />
+      </units>
     </Flow>
   </FlowRoot>
   <PageRoot>
-    <Page name="motion unit (1)">
-      <param compileSize="0" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
-      <steps />
+    <Page name="1 StandingLow">
+      <param compileSize="1" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
+      <steps>
+        <step frame="26" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+      </steps>
+    </Page>
+    <Page name="2 Tripod_FW">
+      <param compileSize="1" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
+      <steps>
+        <step frame="52" pose="44.82 -45.12 -135.06 -15.23 89.94 134.77 -30.18 -90.23 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 75 89.94 134.77 0 -90.23" />
+        <step frame="103" pose="44.82 -45.12 -135.06 -15.23 44.82 134.77 -30.18 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 75 44.82 134.77 0 -90.23" />
+        <step frame="154" pose="14.94 -90.23 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 29.88 89.94 134.77 -75 -90.23 -135.06 44.82 44.82 134.77 0 -90.23" />
+        <step frame="205" pose="14.94 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 29.88 44.82 134.77 -75 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+      </steps>
+    </Page>
+    <Page name="3 Tripod_BW">
+      <param compileSize="1" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
+      <steps>
+        <step frame="52" pose="44.82 -45.12 -135.06 -75 89.94 134.77 29.88 -90.23 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 14.94 89.94 134.77 0 -90.23" />
+        <step frame="102" pose="44.82 -45.12 -135.06 -75 44.82 134.77 29.88 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 14.94 44.82 134.77 0 -90.23" />
+        <step frame="154" pose="75 -90.23 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 -29.3 89.94 134.77 -15.23 -90.23 -135.06 44.82 44.82 134.77 0 -90.23" />
+        <step frame="205" pose="75 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 -29.3 44.82 134.77 -15.23 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+      </steps>
+    </Page>
+    <Page name="4 HeadScan1">
+      <param compileSize="1" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
+      <steps>
+        <step frame="51" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 -150 -90.23" />
+        <step frame="154" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 149.71 -90.23" />
+        <step frame="205" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+      </steps>
+    </Page>
+    <Page name="5 HeadScan2">
+      <param compileSize="1" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
+      <steps>
+        <step frame="51" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 -150 -45.12" />
+        <step frame="103" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+        <step frame="154" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 149.71 -45.12" />
+        <step frame="204" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+      </steps>
+    </Page>
+    <Page name="6 HeadScan3">
+      <param compileSize="1" acceleration="32" softness="5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5" />
+      <steps>
+        <step frame="103" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 128.32" />
+        <step frame="257" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 -128.03" />
+        <step frame="307" pose="44.82 -45.12 -135.06 -45.12 44.82 134.77 0 -45.12 -135.06 0 44.82 134.77 -45.12 -45.12 -135.06 44.82 44.82 134.77 0 -90.23" />
+      </steps>
     </Page>
   </PageRoot>
   <GroupRoot>
@@ -43,5 +113,16 @@
       <param weights="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" />
     </Group>
   </GroupRoot>
-  <BucketRoot />
+  <BucketRoot>
+    <Bucket name="motion group (1)">
+      <callFlows>
+        <callFlow callIndex="1" subIndex="0" exitIndex="0" flow="1 StandingLow" />
+        <callFlow callIndex="2" subIndex="0" exitIndex="0" flow="2 Tripod_FW" />
+        <callFlow callIndex="3" subIndex="0" exitIndex="0" flow="3 Tripod_BW" />
+        <callFlow callIndex="4" subIndex="0" exitIndex="0" flow="4 HeadScan1" />
+        <callFlow callIndex="5" subIndex="0" exitIndex="0" flow="5 HeadScan2" />
+        <callFlow callIndex="6" subIndex="0" exitIndex="0" flow="6 HeadScan3" />
+      </callFlows>
+    </Bucket>
+  </BucketRoot>
 </Root>
