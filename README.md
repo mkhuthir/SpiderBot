@@ -13,12 +13,12 @@ YouTube Video:
 
 There are many options of robotic controllers in the market and it is a great fun to try it all. Initially I started this spider project using the 1st version of TrossenRobotics Arbotix controller with the open source software from the same company. Then I tried the ROBOTIS OpenCM9.04 open source controller along with its Arduino like IDE. Finally, I picked ROBOTIS CM-700 controller along with ROBOTIS RoboPlus Software. I’m not sure how long I will keep using it.
 
-![CM-700-1](https://s3-eu-west-1.amazonaws.com/muthspider/img/CM700-full.png)
+![CM-700-1](./img/CM700-full.png)
 
 What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-based microcontroller (ATMEL ATMEGA2561) which is widely used in many applications including Arduino boards, its big number of ports, and the very user friendly RoboPlus software.
 
 
-![CM-700-2](https://s3-eu-west-1.amazonaws.com/muthspider/img/CM700-parts.png)
+![CM-700-2](./img/CM700-parts.png)
 
 **Controller Specfications:**
 
@@ -44,12 +44,12 @@ What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-bas
 #Robot Motors (Robotis AX-18A):
 
  
-![AX-18A](https://s3-eu-west-1.amazonaws.com/muthspider/img/AX-18A.png)
+![AX-18A](./img/AX-18A.png)
  
 #Robot Sensors (Robotis AX-S1):
 
  
-![AX-S1](https://s3-eu-west-1.amazonaws.com/muthspider/img/AX-S1.png)
+![AX-S1](./img/AX-S1.png)
 
 #Frame (Customised from PhantomX MK1):
 
@@ -57,11 +57,11 @@ What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-bas
 
 #Programming Hardware (Robotis LN-101):
 
-![LN-101](https://s3-eu-west-1.amazonaws.com/muthspider/img/LN-101.png)
+![LN-101](./img/LN-101.png)
 
 #Programming Software (Robotis RoboPlus 1.x and 2.x):
 
-![RoboPlus](https://s3-eu-west-1.amazonaws.com/muthspider/img/RoboPlus.png)
+![RoboPlus](./img/RoboPlus.png)
 
 #Repository Contents
 
