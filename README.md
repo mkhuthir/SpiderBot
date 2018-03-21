@@ -1,6 +1,6 @@
 ﻿# MuthSpider
 
-![MuthSpider](https://s3-eu-west-1.amazonaws.com/muthspider/img/MuthSpider.png)<br>
+![MuthSpider](./img/MuthSpider.png)<br>
 
 YouTube Video:
 [![MuthSpider video](http://img.youtube.com/vi/tW0A7SIOCcE/default.jpg)](http://www.youtube.com/watch?v=tW0A7SIOCcE)
