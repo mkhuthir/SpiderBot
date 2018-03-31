@@ -9,7 +9,7 @@ YouTube Video:
    A hexapod spider robot controlled by [Robotis CM-700 controller](http://support.robotis.com/en/product/auxdevice/controller/cm700_manual.htm), motorized by twenty [Robotis Dynamixel AX-18A servos](http://support.robotis.com/en/product/dynamixel/ax_series/ax-18f.htm), and one [Robotis AX-S1 integrated sensor](http://support.robotis.com/en/product/auxdevice/sensor/dxl_ax_s1.htm) mounted on its head. The robot frame is a slightly modified TrossenRobotics ABS PhantomX kit.
  
 
-#Robot Controller (Robotis CM-700):
+# Robot Controller (Robotis CM-700):
 
 There are many options of robotic controllers in the market and it is a great fun to try it all. Initially I started this spider project using the 1st version of TrossenRobotics Arbotix controller with the open source software from the same company. Then I tried the ROBOTIS OpenCM9.04 open source controller along with its Arduino like IDE. Finally, I picked ROBOTIS CM-700 controller along with ROBOTIS RoboPlus Software. I’m not sure how long I will keep using it.
 
@@ -41,29 +41,29 @@ What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-bas
    - 4-Pin Connector RS-485 Communication : 5
 
 
-#Robot Motors (Robotis AX-18A):
+# Robot Motors (Robotis AX-18A):
 
  
 ![AX-18A](./img/AX-18A.png)
  
-#Robot Sensors (Robotis AX-S1):
+# Robot Sensors (Robotis AX-S1):
 
  
 ![AX-S1](./img/AX-S1.png)
 
-#Frame (Customised from PhantomX MK1):
+# Frame (Customised from PhantomX MK1):
 
-#Battery:
+# Battery:
 
-#Programming Hardware (Robotis LN-101):
+# Programming Hardware (Robotis LN-101):
 
 ![LN-101](./img/LN-101.png)
 
-#Programming Software (Robotis RoboPlus 1.x and 2.x):
+# Programming Software (Robotis RoboPlus 1.x and 2.x):
 
 ![RoboPlus](./img/RoboPlus.png)
 
-#Repository Contents
+# Repository Contents
 
 * **/Docs** - Project Related documentations.
 * **/RoboPlus Files** - Motion,Task, and Design Files generated using Robotis RoboPlus 1.x & 2.x
@@ -74,6 +74,6 @@ What I like about CM-700 is its compact design, the low-power 8-bit AVR RISC-bas
 * Version 1.0 (work in progress).
 
 
-#License Information
+# License Information
 
 All code in this repo is open source so please feel free to do anything you want with it.
