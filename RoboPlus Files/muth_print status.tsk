@@ -1,0 +1,20 @@
+﻿version 3.00
+cm_version 1.0
+platform CM-530
+o // param_text:Muthanna Attyah
+o // param_text:12th Feb 2013
+o // param_text:My first task test
+o main
+o begin
+o load param_dest:cm:11 param_src:dec_num:1
+o load param_dest:cm:11 param_src:motor:1:112
+o load param_dest:cm:11 param_src:motor:1:113
+o load param_dest:cm:11 param_src:motor:1:111
+o load param_dest:cm:11 param_src:motor:1:110
+o load param_dest:cm:11 param_src:motor:1:100
+o load param_dest:cm:11 param_src:motor:1:101
+o load param_dest:cm:11 param_src:motor:1:108
+o load param_dest:cm:11 param_src:motor:1:114
+o load param_dest:cm:11 param_src:motor:1:106
+o load param_dest:cm:11 param_src:motor:1:107
+o end

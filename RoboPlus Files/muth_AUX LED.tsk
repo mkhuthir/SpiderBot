@@ -1,0 +1,19 @@
+﻿version 3.00
+cm_version 1.0
+platform CM-530
+o main
+o begin
+o while(1)
+o begin
+o if param_src:cm:4 lop:== param_src:button_num:8 rop:then
+o load param_dest:cm:3 param_src:bool_num:1
+o elseif param_src:cm:4 lop:== param_src:button_num:4 rop:then
+o load param_dest:cm:3 param_src:bool_num:0
+o elseif param_src:cm:4 lop:== param_src:button_num:2 rop:then
+o load param_dest:cm:17 param_src:melody_num:2
+o elseif param_src:cm:4 lop:== param_src:button_num:1 rop:then
+o load param_dest:cm:17 param_src:scale_num:50
+o elseif param_src:cm:4 lop:== param_src:button_num:16 rop:then
+o exit
+o end
+o end

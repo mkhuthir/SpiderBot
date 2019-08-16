@@ -1,0 +1,37 @@
+﻿version 3.00
+cm_version 1.0
+platform CM-530
+o // param_text:Muthanna Attyah
+o // param_text:12th Feb 2013
+o // param_text:My first task test
+o main
+o begin
+o load param_dest:motor:1:106 param_src:dec_num:0
+o load param_dest:motor:2:106 param_src:dec_num:0
+o load param_dest:motor:3:106 param_src:dec_num:0
+o load param_dest:motor:4:106 param_src:dec_num:0
+o while param_src:motor:1:109 lop:!= param_src:dec_num:0 rop:then
+o begin
+o end
+o load param_dest:motor:1:106 param_src:dec_num:512
+o load param_dest:motor:2:106 param_src:dec_num:512
+o load param_dest:motor:3:106 param_src:dec_num:512
+o load param_dest:motor:4:106 param_src:dec_num:512
+o while param_src:motor:1:109 lop:!= param_src:dec_num:512 rop:then
+o begin
+o end
+o load param_dest:motor:1:106 param_src:dec_num:1023
+o load param_dest:motor:2:106 param_src:dec_num:1023
+o load param_dest:motor:3:106 param_src:dec_num:1023
+o load param_dest:motor:4:106 param_src:dec_num:1023
+o while param_src:motor:1:109 lop:!= param_src:dec_num:1023 rop:then
+o begin
+o end
+o load param_dest:motor:1:106 param_src:dec_num:512
+o load param_dest:motor:2:106 param_src:dec_num:512
+o load param_dest:motor:3:106 param_src:dec_num:512
+o load param_dest:motor:4:106 param_src:dec_num:512
+o while param_src:motor:1:109 lop:!= param_src:dec_num:512 rop:then
+o begin
+o end
+o end
