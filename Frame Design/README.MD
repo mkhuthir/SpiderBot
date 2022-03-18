@@ -1,4 +1,4 @@
-# Phantom X Mark 1 Frame Design:
+# Phantom X MKI Frame Design:
 
 ![MuthSpider](../img/RK-PhantomX-Hexapod-AX-12a.jpg)<br>
 ![MuthSpider](../img/RK-PhantomX-Hexapod-AX-12c.jpg)<br>
