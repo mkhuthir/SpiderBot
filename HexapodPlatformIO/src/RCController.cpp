@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "RCController.h"
 
 RCController::RCController(HardwareSerial& serial) : rcSerial(serial) {

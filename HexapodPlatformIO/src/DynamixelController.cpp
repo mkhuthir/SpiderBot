@@ -22,7 +22,7 @@ void DynamixelController::setPosition(uint8_t id, float angleDeg) {
 }
 
 void DynamixelController::setSpeed(uint8_t id, float rpm) {
-  dxl.setProfileVelocity(id, rpm);
+  dxl.setGoalVelocity(id, rpm, UNIT_RPM);
 }
 
 float DynamixelController::readPosition(uint8_t id) {
