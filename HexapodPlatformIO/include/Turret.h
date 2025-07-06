@@ -2,6 +2,8 @@
 #define TURRET_H
 
 #include "DynamixelController.h"
+#include "Config.h"
+
 
 class Turret {
   public:

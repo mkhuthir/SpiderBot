@@ -2,6 +2,8 @@
 #define RCCONTROLLER_H
 
 #include <HardwareSerial.h>
+#include "Config.h"
+
 
 struct RCState {
   float speed;

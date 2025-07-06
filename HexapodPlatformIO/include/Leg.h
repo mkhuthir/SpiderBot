@@ -2,6 +2,8 @@
 #define LEG_H
 
 #include "DynamixelController.h"
+#include "Config.h"
+
 
 class Leg {
   public:

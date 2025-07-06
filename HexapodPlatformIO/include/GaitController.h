@@ -2,6 +2,8 @@
 #define GAITCONTROLLER_H
 
 #include "Hexapod.h"
+#include "Config.h"
+
 
 class GaitController {
   public:

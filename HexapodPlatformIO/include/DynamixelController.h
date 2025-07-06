@@ -2,6 +2,8 @@
 #define DYNAMIXEL_CONTROLLER_H
 
 #include <Dynamixel2Arduino.h>
+#include "Config.h"
+
 
 class DynamixelController {
   public:

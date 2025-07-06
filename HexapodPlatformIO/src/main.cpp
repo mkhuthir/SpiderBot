@@ -1,4 +1,7 @@
+
+
 #include <Arduino.h>
+#include "Config.h"
 #include "DynamixelController.h"
 #include "Leg.h"
 #include "Hexapod.h"
@@ -6,8 +9,9 @@
 #include "RCController.h"
 #include "GaitController.h"
 
-DynamixelController dxlController(Serial3, 22);
-RCController rcController(Serial1);
+
+DynamixelController dxlController(DXL_SERIAL_PORT, 22);
+RCController rcController(RC_SERIAL_PORT);
 
 Hexapod*        hexapod;
 Turret*         turret;
@@ -16,8 +20,8 @@ GaitController* gaitController;
 void setup() {
 
   // Initialize Serial for debugging
-  Serial.begin(115200);
-  
+  Serial.begin(DEBUG_BAUD_RATE);
+
   while (!Serial) {
     ; // Wait for Serial to be ready
   }
@@ -25,22 +29,22 @@ void setup() {
   Serial.println("SpiderBot Starting Setup...");
 
   // Initialize Dynamixel Controller
-  dxlController.begin(57600);
+  dxlController.begin(DXL_BAUD_RATE);
   hexapod = new Hexapod(&dxlController);
   hexapod->initialize();
   Serial.println("Hexapod initialized.");
   
-  // Initialize Turret
-  turret = new Turret(19, 20, 100, &dxlController);
+  // Initialize Sensor Turret
+  turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, AX_S1_SENSOR_ID, &dxlController);
   turret->initialize();
-  Serial.println("Turret initialized.");
+  Serial.println("Sensor Turret initialized.");
 
   // Initialize RC Controller
-  rcController.begin(57600);
+  rcController.begin(RC_BAUD_RATE);
   Serial.println("RC Controller initialized.");
   
   // Initialize Gait Controller
-  gaitController = new GaitController(hexapod, 1000);
+  gaitController = new GaitController(hexapod, DEFAULT_GAIT_CYCLE_MS);
   Serial.println("Gait Controller initialized.");
   
   Serial.println("SpiderBot Setup Complete.");
