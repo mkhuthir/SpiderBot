@@ -35,7 +35,7 @@ void setup() {
   Serial.println("Dynamixel Controller initialized.");
   
   // Initialize Sensor Turret
-  turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, AX_S1_SENSOR_ID, &dxlController);
+  turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxlController);
   turret->initialize();                   // Initialize turret servos
   turret->resetTurret();                  // Reset turret to default position
   Serial.println("Sensor Turret initialized.");
@@ -55,13 +55,5 @@ void setup() {
 }
 
 void loop() {
-
-  turret->rotateTurret(290, 60);  // Rotate turret to test position
-  delay(3000);                     // Wait for a second
-  turret->rotateTurret( 40, 60);  // Rotate turret to test position
-  delay(3000);                     // Wait for a second
-  turret->resetTurret();           // Reset turret to default position
-  delay(3000);                     // Wait for a second
-
 
 }
