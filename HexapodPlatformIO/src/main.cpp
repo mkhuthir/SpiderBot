@@ -32,7 +32,7 @@ void setup() {
   dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
   hexapod = new Hexapod(&dxlController);
   hexapod->initialize();
-  Serial.println("Hexapod initialized.");
+  Serial.println("Dynamixel Controller initialized.");
   
   // Initialize Sensor Turret
   turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, AX_S1_SENSOR_ID, &dxlController);
@@ -54,13 +54,5 @@ void setup() {
 }
 
 void loop() {
-  rcController.readInput();
-  RCState state = rcController.getState();
 
-  if (!state.signalValid) {
-    hexapod->stop();
-    return;
-  }
-
-  gaitController->update();
 }

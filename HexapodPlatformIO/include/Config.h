@@ -24,8 +24,9 @@
 // SERVO LIMITS
 // Define safe limits to avoid mechanical overrun
 // AX-18A typical physical limit ~0-300 deg
-#define SERVO_MIN_ANGLE_DEG   0
-#define SERVO_MAX_ANGLE_DEG   300
+#define SERVO_MIN_ANGLE_DEG     0   // Min angle for AX-18A servos
+#define SERVO_MAX_ANGLE_DEG     300 // Max angle for AX-18A servos
+#define MAX_NO_OF_SERVOS        256 // Max number of servos supported by Dynamixel2Arduino
 
 // ------------------------
 // SERVO IDs

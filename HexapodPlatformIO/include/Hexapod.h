@@ -7,23 +7,20 @@
 
 class Hexapod {
   public:
-    Hexapod(DynamixelController* controller);
-    void initialize();
-    void setGait(int gaitType);
-    void setSpeed(float speed);
-    void moveForward();
-    void moveBackward();
-    void turn(float angle);
-    void stop();
-    // void liftAndSwingLegs(const std::initializer_list<int>& legIds);
-    // void supportLegs(const std::initializer_list<int>& legIds);
-
+    Hexapod(DynamixelController* controller); // Constructor
+    void initialize();                        // Initialize the hexapod
+    void setGait(int gaitType);               // Set the gait type
+    void setSpeed(float speed);               // Set the gait speed
+    void moveForward();                       // Move the hexapod forward 
+    void moveBackward();                      // Move the hexapod backward
+    void turn(float angle);                   // Turn the hexapod by a specified angle
+    void stop();                              // Stop the hexapod
 
   private:
-    Leg* legs[6];
-    DynamixelController* dxlCtrl;
-    float robotSpeed;
-    int gaitState;
+    Leg* legs[6];                             // Array of legs
+    DynamixelController* dxlCtrl;             // Dynamixel controller instance
+    float robotSpeed;                         // Current gait speed
+    int gaitState;                            // Current gait state
 };
 
 #endif

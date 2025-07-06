@@ -12,10 +12,10 @@ class GaitController {
     void setCycleDuration(unsigned long duration);
   private:
     Hexapod* hexapod;
-    unsigned long cycleDuration;
-    unsigned long lastPhaseTime;
+    unsigned long cycleDuration;  // Duration of one complete gait cycle in milliseconds
+    unsigned long lastPhaseTime;  // Timestamp of the last phase change
     bool phase;                   // false = A moves, true = B moves
-    void executePhase();
+    void executePhase();          // Execute the current phase of the gait
 };
 
 #endif
