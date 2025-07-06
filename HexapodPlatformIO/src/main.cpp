@@ -4,15 +4,16 @@
 #include "Hexapod.h"
 #include "Turret.h"
 #include "RCController.h"
+#include "GaitController.h"
 
 DynamixelController dxlController(Serial3, 22);
-RCController        rcController(Serial1);
-Hexapod*            hexapod;
-Turret*             turret;
+RCController rcController(Serial1);
+Hexapod* hexapod;
+Turret* turret;
+GaitController* gaitController;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("SpiderBot Startup...");
 
   dxlController.begin(57600);
   hexapod = new Hexapod(&dxlController);
@@ -22,6 +23,8 @@ void setup() {
   turret->initialize();
 
   rcController.begin(57600);
+
+  gaitController = new GaitController(hexapod, 1000);
 }
 
 void loop() {
@@ -30,18 +33,8 @@ void loop() {
 
   if (!state.signalValid) {
     hexapod->stop();
-    turret->resetTurret();
     return;
   }
 
-  hexapod->setGait(state.gait);
-  hexapod->setSpeed(state.speed);
-
-  if (state.direction > 0.1) {
-    hexapod->turn(state.direction);
-  } else {
-    hexapod->moveForward();
-  }
-
-  turret->rotateTurret(state.turretPan, state.turretTilt);
+  gaitController->update();
 }
