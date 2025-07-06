@@ -21,22 +21,23 @@ void setup() {
 
   // Initialize Serial for debugging
   Serial.begin(DEBUG_BAUD_RATE);
-
-  while (!Serial) {
-    ; // Wait for Serial to be ready
-  }
+  // Wait for Serial to be ready
+  while (!Serial) {};
 
   Serial.println("SpiderBot Starting Setup...");
 
   // Initialize Dynamixel Controller
   dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
-  hexapod = new Hexapod(&dxlController);
-  hexapod->initialize();
+  hexapod = new Hexapod(&dxlController);  // Create Hexapod instance with Dynamixel controller
+  hexapod->initialize();                  // Initialize all legs
+  hexapod->setGait(0);                    // Set default gait
+  hexapod->setSpeed(0.5);                 // Set default speed
   Serial.println("Dynamixel Controller initialized.");
   
   // Initialize Sensor Turret
   turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, AX_S1_SENSOR_ID, &dxlController);
-  turret->initialize();
+  turret->initialize();                   // Initialize turret servos
+  turret->resetTurret();                  // Reset turret to default position
   Serial.println("Sensor Turret initialized.");
 
   // Initialize RC Controller
