@@ -13,6 +13,9 @@ class Hexapod {
     void moveBackward();
     void turn(float angle);
     void stop();
+    void liftAndSwingLegs(const std::initializer_list<int>& legIds);
+    void supportLegs(const std::initializer_list<int>& legIds);
+
 
   private:
     Leg* legs[6];

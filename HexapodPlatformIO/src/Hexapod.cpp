@@ -35,3 +35,16 @@ void Hexapod::stop() {
   for(int i=0; i<6; i++)
     legs[i]->setJointAngles(0,0,0);
 }
+
+void Hexapod::liftAndSwingLegs(const std::initializer_list<int>& legIds) {
+  for (int id : legIds) {
+    legs[id - 1]->liftLeg();
+    legs[id - 1]->moveLegForward();
+  }
+}
+
+void Hexapod::supportLegs(const std::initializer_list<int>& legIds) {
+  for (int id : legIds) {
+    legs[id - 1]->setJointAngles(0, 0, 0); // keep stable pose
+  }
+}
