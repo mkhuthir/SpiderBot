@@ -10,8 +10,8 @@
 #include "GaitController.h"
 
 
-DynamixelController dxlController(DXL_SERIAL_PORT, 22);
-RCController rcController(RC_SERIAL_PORT);
+DynamixelController dxlController(DXL_SERIAL, DXL_DIR_PIN);
+RCController rcController(RC_SERIAL);
 
 Hexapod*        hexapod;
 Turret*         turret;
@@ -55,5 +55,13 @@ void setup() {
 }
 
 void loop() {
+
+  turret->rotateTurret(290, 60);  // Rotate turret to test position
+  delay(3000);                     // Wait for a second
+  turret->rotateTurret( 40, 60);  // Rotate turret to test position
+  delay(3000);                     // Wait for a second
+  turret->resetTurret();           // Reset turret to default position
+  delay(3000);                     // Wait for a second
+
 
 }

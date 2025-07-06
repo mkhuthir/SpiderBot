@@ -6,8 +6,8 @@ Turret::Turret(uint8_t panID, uint8_t tiltID, uint8_t sensorID, DynamixelControl
 
 // Initialize the turret servos
 void Turret::initialize() {
-  dxlCtrl->initializeServo(pan, -90, 90);                           // Initialize pan servo with limits
-  dxlCtrl->initializeServo(tilt, -45, 45);                          // Initialize tilt servo with limits
+  dxlCtrl->initializeServo(pan,TURRET_PAN_MIN_ANGLE_DEG, TURRET_PAN_MAX_ANGLE_DEG);     // Initialize pan servo with limits
+  dxlCtrl->initializeServo(tilt,TURRET_TILT_MIN_ANGLE_DEG, TURRET_TILT_MAX_ANGLE_DEG);  // Initialize tilt servo with limits
 }
 
 // Rotate the turret to specified angles
@@ -18,7 +18,7 @@ void Turret::rotateTurret(float panAngle, float tiltAngle) {
 
 // Reset the turret to default position
 void Turret::resetTurret() {
-  rotateTurret(0,0);                                                // Reset turret to default position
+  rotateTurret(TURRET_PAN_DEFAULT_DEG, TURRET_TILT_DEFAULT_DEG);    // Reset turret to default position
 }
 
 // Read the sensor value
