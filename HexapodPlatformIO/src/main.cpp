@@ -12,7 +12,7 @@ Turret*             turret;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Hexapod PlatformIO Startup");
+  Serial.println("SpiderBot Startup...");
 
   dxlController.begin(57600);
   hexapod = new Hexapod(&dxlController);
