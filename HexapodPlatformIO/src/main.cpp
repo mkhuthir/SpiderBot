@@ -6,9 +6,9 @@
 #include "RCController.h"
 
 DynamixelController dxlController(Serial3, 22);
-RCController rcController(Serial1);
-Hexapod* hexapod;
-Turret* turret;
+RCController        rcController(Serial1);
+Hexapod*            hexapod;
+Turret*             turret;
 
 void setup() {
   Serial.begin(115200);
