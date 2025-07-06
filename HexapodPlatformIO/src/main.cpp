@@ -29,7 +29,7 @@ void setup() {
   Serial.println("SpiderBot Starting Setup...");
 
   // Initialize Dynamixel Controller
-  dxlController.begin(DXL_BAUD_RATE);
+  dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
   hexapod = new Hexapod(&dxlController);
   hexapod->initialize();
   Serial.println("Hexapod initialized.");

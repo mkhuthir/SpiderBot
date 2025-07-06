@@ -8,7 +8,7 @@
 class DynamixelController {
   public:
     DynamixelController(HardwareSerial& serial, uint8_t dirPin);
-    void begin(int baudrate);
+    void begin(int baudrate, float protocolVersion = DXL_PROTOCOL_VERSION);
     void setPosition(uint8_t id, float angleDeg);
     void setSpeed(uint8_t id, float rpm);
     float readPosition(uint8_t id);
