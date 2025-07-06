@@ -24,11 +24,11 @@ void GaitController::update() {
 void GaitController::executePhase() {
   if (!phase) {
     // Phase 1: Group A moves
-    hexapod->liftAndSwingLegs({1,4,5});
-    hexapod->supportLegs({2,3,6});
+   // hexapod->liftAndSwingLegs({1,4,5});
+   // hexapod->supportLegs({2,3,6});
   } else {
     // Phase 2: Group B moves
-    hexapod->liftAndSwingLegs({2,3,6});
-    hexapod->supportLegs({1,4,5});
+   // hexapod->liftAndSwingLegs({2,3,6});
+   // hexapod->supportLegs({1,4,5});
   }
 }

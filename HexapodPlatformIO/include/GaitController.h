@@ -12,7 +12,7 @@ class GaitController {
     Hexapod* hexapod;
     unsigned long cycleDuration;
     unsigned long lastPhaseTime;
-    bool phase;  // false = A moves, true = B moves
+    bool phase;                   // false = A moves, true = B moves
     void executePhase();
 };
 
