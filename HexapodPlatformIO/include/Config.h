@@ -92,8 +92,6 @@
 // Define safe limits to avoid mechanical overrun
 // AX-18A typical physical limit ~0-300 deg
 
-#define SERVO_MIN_ANGLE_DEG         0   // Min angle for AX-18A servos
-#define SERVO_MAX_ANGLE_DEG         300 // Max angle for AX-18A servos
 #define MAX_NO_OF_SERVOS            256 // Max number of servos supported by Dynamixel2Arduino
 
 #define TURRET_PAN_MIN_ANGLE_DEG    0   // Min angle for turret pan servo
@@ -115,8 +113,6 @@
 #define TIBIA_MIN_ANGLE_DEG         0   // Min angle for TIBIA servo
 #define TIBIA_MAX_ANGLE_DEG         300 // Max angle for TIBIA servo
 #define TIBIA_DEFAULT_DEG           150 // Default angle for TIBIA servo
-
-
 
 // ------------------------
 // GAIT TIMING
