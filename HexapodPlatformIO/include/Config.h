@@ -104,15 +104,19 @@
 
 #define COXA_MIN_ANGLE_DEG          0   // Min angle for COXA servo
 #define COXA_MAX_ANGLE_DEG          300 // Max angle for COXA servo
-#define COXA_DEFAULT_DEG            150 // Default angle for COXA servo
+#define COXA_UP_ANGLE_DEG          150 // Default up angle for COXA servo
+#define COXA_DOWN_ANGLE_DEG        100 // Default down angle for COXA servo 
 
 #define FEMUR_MIN_ANGLE_DEG         0   // Min angle for FEMUR servo
 #define FEMUR_MAX_ANGLE_DEG         300 // Max angle for FEMUR servo
-#define FEMUR_DEFAULT_DEG           150 // Default angle for FEMUR servo
+#define FEMUR_UP_ANGLE_DEG         150 // Default up angle for FEMUR servo
+#define FEMUR_DOWN_ANGLE_DEG       100 // Default down angle for FEMUR servo
 
 #define TIBIA_MIN_ANGLE_DEG         0   // Min angle for TIBIA servo
 #define TIBIA_MAX_ANGLE_DEG         300 // Max angle for TIBIA servo
-#define TIBIA_DEFAULT_DEG           150 // Default angle for TIBIA servo
+#define TIBIA_UP_ANGLE_DEG         150 // Default up angle for TIBIA servo
+#define TIBIA_DOWN_ANGLE_DEG       100 // Default down angle for TIBIA servo
+
 
 // ------------------------
 // GAIT TIMING
