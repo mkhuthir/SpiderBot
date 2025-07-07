@@ -104,6 +104,20 @@
 #define TURRET_TILT_MAX_ANGLE_DEG   300 // Max angle for turret tilt servo
 #define TURRET_TILT_DEFAULT_DEG     60  // Default tilt angle for turret    
 
+#define COXA_MIN_ANGLE_DEG          0   // Min angle for COXA servo
+#define COXA_MAX_ANGLE_DEG          300 // Max angle for COXA servo
+#define COXA_DEFAULT_DEG            150 // Default angle for COXA servo
+
+#define FEMUR_MIN_ANGLE_DEG         0   // Min angle for FEMUR servo
+#define FEMUR_MAX_ANGLE_DEG         300 // Max angle for FEMUR servo
+#define FEMUR_DEFAULT_DEG           150 // Default angle for FEMUR servo
+
+#define TIBIA_MIN_ANGLE_DEG         0   // Min angle for TIBIA servo
+#define TIBIA_MAX_ANGLE_DEG         300 // Max angle for TIBIA servo
+#define TIBIA_DEFAULT_DEG           150 // Default angle for TIBIA servo
+
+
+
 // ------------------------
 // GAIT TIMING
 // ------------------------

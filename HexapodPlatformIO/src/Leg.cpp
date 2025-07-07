@@ -5,9 +5,9 @@ Leg::Leg(uint8_t coxaID, uint8_t femurID, uint8_t tibiaID, DynamixelController* 
 
 // Initialize the leg servos
 void Leg::initialize() {
-  dxlCtrl->initializeServo(coxa, -90, 90);    // Initialize coxa servo with limits
-  dxlCtrl->initializeServo(femur, -45, 90);   // Initialize femur servo with limits
-  dxlCtrl->initializeServo(tibia, -90, 90);   // Initialize tibia servo with limits
+  dxlCtrl->initializeServo(coxa, COXA_MIN_ANGLE_DEG, COXA_MAX_ANGLE_DEG);       // Initialize coxa servo with limits
+  dxlCtrl->initializeServo(femur, FEMUR_MIN_ANGLE_DEG, FEMUR_MAX_ANGLE_DEG);    // Initialize femur servo with limits
+  dxlCtrl->initializeServo(tibia, TIBIA_MIN_ANGLE_DEG, TIBIA_MAX_ANGLE_DEG);    // Initialize tibia servo with limits
 }
 
 // Set angles for the leg joints
