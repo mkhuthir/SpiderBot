@@ -104,8 +104,6 @@
 #define TURRET_TILT_MAX_ANGLE_DEG   300 // Max angle for turret tilt servo
 #define TURRET_TILT_DEFAULT_DEG     60  // Default tilt angle for turret    
 
-
-
 // ------------------------
 // GAIT TIMING
 // ------------------------
