@@ -17,6 +17,11 @@ void DynamixelController::initializeServo(uint8_t id, float minAngle, float maxA
   limits[id] = {minAngle, maxAngle};      // Store limits for this servo
 }
 
+// Check if the controller is connected to the servos
+bool DynamixelController::isConnected() {
+  return dxl.ping(DXL_BROADCAST_ID);
+}
+
 // Set the position of a servo in degrees
 void DynamixelController::setPosition(uint8_t id, float angleDeg) {
   if (angleDeg < limits[id].minAngle) angleDeg = limits[id].minAngle; // Clamp to min angle
