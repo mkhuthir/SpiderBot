@@ -9,31 +9,35 @@ Hexapod::Hexapod(DynamixelController* controller) : dxlCtrl(controller) {
   legs[5] = new Leg(16,17,18, controller);
 }
 
+// Initialize the hexapod
 void Hexapod::initialize() {
   for(int i=0; i<6; i++)
     legs[i]->initialize();
 }
 
+// Set the gait type
 void Hexapod::setGait(int gaitType) {
   gaitState = gaitType;
 }
 
+// Set the gait speed
 void Hexapod::setSpeed(float speed) {
   robotSpeed = speed;
 }
 
-void Hexapod::moveForward() {
+// Stand up the hexapod
+void Hexapod::standUp() {
   for(int i=0; i<6; i++)
-    legs[i]->moveLegForward();
+    legs[i]->liftLeg();
 }
 
-void Hexapod::moveBackward() {}
-
-void Hexapod::turn(float angle) {}
-
-void Hexapod::stop() {
+// Sit down the hexapod
+void Hexapod::sitDown() {
   for(int i=0; i<6; i++)
-    legs[i]->setJointAngles(0,0,0);
+    legs[i]->setJointAngles(0, 0, 0);
 }
+
+
+
 
 

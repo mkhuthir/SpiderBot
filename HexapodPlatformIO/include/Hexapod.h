@@ -11,11 +11,10 @@ class Hexapod {
     void initialize();                        // Initialize the hexapod
     void setGait(int gaitType);               // Set the gait type
     void setSpeed(float speed);               // Set the gait speed
-    void moveForward();                       // Move the hexapod forward 
-    void moveBackward();                      // Move the hexapod backward
-    void turn(float angle);                   // Turn the hexapod by a specified angle
-    void stop();                              // Stop the hexapod
-
+   
+    void standUp();                           // Stand up the hexapod
+    void sitDown();                           // Sit down the hexapod
+     
   private:
     Leg* legs[6];                             // Array of legs
     DynamixelController* dxlCtrl;             // Dynamixel controller instance
