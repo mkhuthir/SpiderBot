@@ -10,12 +10,12 @@
 #include "GaitController.h"
 
 
-DynamixelController dxlController(DXL_SERIAL, DXL_DIR_PIN);
-RCController rcController(RC_SERIAL);
+DynamixelController dxlController(DXL_SERIAL, DXL_DIR_PIN); // Create an instance of DynamixelController with the specified serial port and direction pin
+RCController rcController(RC_SERIAL);                       // Create an instance of RCController with the specified serial port
 
-Hexapod*        hexapod;
-Turret*         turret;
-GaitController* gaitController;
+Hexapod*        hexapod;            // Pointer to Hexapod instance
+Turret*         turret;             // Pointer to Turret instance
+GaitController* gaitController;     // Pointer to GaitController instance
 
 void setup() {
 
@@ -28,6 +28,14 @@ void setup() {
 
   // Initialize Dynamixel Controller
   dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
+
+  if (!dxlController.isConnected()) {
+    Serial.println("Failed to connect to Dynamixel servos.");
+    while (true); // Halt execution if connection fails
+  }
+  Serial.println("Dynamixel Controller connected successfully.");
+
+  // Initialize Hexapod
   hexapod = new Hexapod(&dxlController);  // Create Hexapod instance with Dynamixel controller
   hexapod->initialize();                  // Initialize all legs
   hexapod->setGait(0);                    // Set default gait
@@ -49,8 +57,7 @@ void setup() {
   Serial.println("Gait Controller initialized.");
   
   Serial.println("SpiderBot Setup Complete.");
-
-
+  Serial.println("Ready to receive commands.");
 
 }
 
