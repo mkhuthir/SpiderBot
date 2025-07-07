@@ -21,8 +21,7 @@ void setup() {
 
   // Initialize Serial for debugging
   Serial.begin(DEBUG_BAUD_RATE);
-  // Wait for Serial to be ready
-  while (!Serial) {};
+  while (!Serial); // Wait for Serial to be ready
 
   Serial.println("SpiderBot Starting Setup...");
 
