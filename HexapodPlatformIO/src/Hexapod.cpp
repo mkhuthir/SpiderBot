@@ -28,13 +28,13 @@ void Hexapod::setSpeed(float speed) {
 // Stand up the hexapod
 void Hexapod::standUp() {
   for(int i=0; i<6; i++)
-    legs[i]->liftLeg();
+    legs[i]->legUp();
 }
 
 // Sit down the hexapod
 void Hexapod::sitDown() {
   for(int i=0; i<6; i++)
-    legs[i]->setJointAngles(0, 0, 0);
+    legs[i]->legDown();
 }
 
 

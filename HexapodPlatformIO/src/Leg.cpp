@@ -18,11 +18,11 @@ void Leg::setJointAngles(float coxaAngle, float femurAngle, float tibiaAngle) {
 }
 
 // Lift the leg to a default position
-void Leg::liftLeg() {
+void Leg::legUp() {
   setJointAngles(150, 150, 150);   // Lift the leg by setting specific angles
 }
 
 // Move the leg forward to a default position
-void Leg::moveLegForward() {
-  setJointAngles(100, 100, 100);  // Move the leg forward by setting specific angles
+void Leg::legDown() {
+  setJointAngles(100, 100, 100);  // Move the leg down by setting specific angles
 }
