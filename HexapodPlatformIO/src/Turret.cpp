@@ -15,8 +15,28 @@ void Turret::rotateTurret(float panAngle, float tiltAngle) {
   dxlCtrl->setServoPosition(tilt, tiltAngle);                            // Set tilt angle 
 }
 
-// Reset the turret to default position
-void Turret::resetTurret() {
+// Rotate turret to the left
+void Turret::rotateTurretLeft() {
+  rotateTurret(60,60);  // Rotate turret to the left
+}
+
+// Rotate turret to the right
+void Turret::rotateTurretRight() {
+  rotateTurret(270,60); // Rotate turret to the right
+} 
+
+// Rotate turret up
+void Turret::rotateTurretUp() {
+  rotateTurret(60, 30);  // Rotate turret up
+}
+
+// Rotate turret down
+void Turret::rotateTurretDown() {
+  rotateTurret(60, 90); // Rotate turret down
+} 
+
+// Rotate the turret to default position
+void Turret::rotateTurretHome() {
   rotateTurret(TURRET_PAN_DEFAULT_DEG, TURRET_TILT_DEFAULT_DEG);    // Reset turret to default position
 }
 

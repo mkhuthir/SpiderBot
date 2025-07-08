@@ -47,7 +47,7 @@ void setup() {
   // Initialize Sensor Turret
   turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxlController); // Create Turret instance with Dynamixel controller
   turret->initialize();                                               // Initialize turret servos
-  turret->resetTurret();                                              // Reset turret to default position
+  turret->rotateTurretHome();                                         // Rotate turret to home position
   Serial.println("Sensor Turret initialized.");
 
   // Initialize RC Controller
@@ -57,7 +57,6 @@ void setup() {
   // Initialize Gait Controller
   gaitController = new GaitController(hexapod, DEFAULT_GAIT_CYCLE_MS);
   Serial.println("Gait Controller initialized.");
-  
   Serial.println("SpiderBot Setup Complete.");
   Serial.println("Ready to receive commands.");
 
@@ -67,5 +66,16 @@ void setup() {
 }
 
 void loop() {
-  
+
+  turret->rotateTurretLeft();  // Rotate turret to the left for testing
+  delay(1000);                 // Wait for 1 second
+  turret->rotateTurretRight(); // Rotate turret to the right for testing
+  delay(1000);                 // Wait for 1 second
+  turret->rotateTurretUp();    // Rotate turret up for testing
+  delay(1000);                 // Wait for 1 second
+  turret->rotateTurretDown();  // Rotate turret down for testing
+  delay(1000);                 // Wait for 1 second
+  turret->rotateTurretHome();  // Rotate turret back to home position for testing
+  delay(1000);                 // Wait for 1 second
+
 }
