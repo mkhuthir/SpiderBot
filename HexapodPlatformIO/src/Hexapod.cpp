@@ -16,13 +16,18 @@ void Hexapod::initialize() {
 }
 
 // Set the gait type
-void Hexapod::setGaitType(int gaitType) {
-  gaitState = gaitType;
+void Hexapod::setGaitType(int Type) {
+  gaitType = Type;
 }
 
 // Set the gait speed
-void Hexapod::setGaitSpeed(float speed) {
-  robotSpeed = speed;
+void Hexapod::setGaitSpeed(float Speed) {
+  gaitSpeed = Speed;
+}
+
+// Set the servo speed
+void Hexapod::setServoSpeed(float Speed) {
+  servoSpeed = Speed;
 }
 
 // Stand up the hexapod
@@ -37,6 +42,18 @@ void Hexapod::sitDown() {
     legs[i]->legDown();
 }
 
+// Print the status of all legs
+void Hexapod::printLegsStatus() {
+  Serial.println("\nHexapod Legs Status:");
+  for (int i = 0; i < 6; i++) {
+    Serial.print("Leg ");
+    Serial.print(i + 1);
+    Serial.print(": ");
+    legs[i]->printJointAngles();  // Print joint angles of each leg 
+  }
+  Serial.println("---");
+
+}
 
 
 

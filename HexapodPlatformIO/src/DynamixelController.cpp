@@ -23,23 +23,18 @@ bool DynamixelController::isConnected() {
 }
 
 // Set the position of a servo in degrees
-void DynamixelController::setPosition(uint8_t id, float angleDeg) {
+void DynamixelController::setServoPosition(uint8_t id, float angleDeg) {
   if (angleDeg < limits[id].minAngle) angleDeg = limits[id].minAngle; // Clamp to min angle
   if (angleDeg > limits[id].maxAngle) angleDeg = limits[id].maxAngle; // Clamp to max angle
   dxl.setGoalPosition(id, angleDeg, UNIT_DEGREE);                     // Set position in degrees
 }
 
 // Set the speed of a servo in RPM
-void DynamixelController::setSpeed(uint8_t id, float rpm) {
-  dxl.setGoalVelocity(id, rpm, UNIT_RPM);         // Set speed in RPM
+void DynamixelController::setServoSpeed(uint8_t id, float percent) {
+  dxl.setGoalVelocity(id, percent, UNIT_PERCENT);         // Set speed in RPM
 }
 
 // Read the current position of a servo in degrees
-float DynamixelController::readPosition(uint8_t id) {
+float DynamixelController::getServoPosition(uint8_t id) {
   return dxl.getPresentPosition(id, UNIT_DEGREE); // Read position in degrees
-}
-
-// Close the Dynamixel controller connection
-void DynamixelController::close() {
-// End the connection to the Dynamixel controller
 }

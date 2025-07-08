@@ -13,11 +13,9 @@ class DynamixelController {
     void  initializeServo(uint8_t id, float minAngle, float maxAngle);        // Initialize a servo with its ID and angle limits
 
     bool  isConnected();                                                      // Check if the controller is connected
-    void  setPosition(uint8_t id, float angleDeg);                            // Set servo position in degrees
-    void  setSpeed(uint8_t id, float rpm);                                    // Set servo speed in RPM
-    float readPosition(uint8_t id);                                           // Read current servo position in degrees 
-    void  close();                                                            // Close the controller connection 
-    
+    void  setServoPosition(uint8_t id, float angleDeg);                       // Set servo position in degrees
+    void  setServoSpeed(uint8_t id, float percent);                           // Set servo speed in percentage of max speed
+    float getServoPosition(uint8_t id);                                       // Read current servo position in degrees 
 
   private:
     Dynamixel2Arduino dxl;                // Dynamixel controller instance

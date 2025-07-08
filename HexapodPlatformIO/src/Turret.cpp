@@ -11,11 +11,21 @@ void Turret::initialize() {
 
 // Rotate the turret to specified angles
 void Turret::rotateTurret(float panAngle, float tiltAngle) {
-  dxlCtrl->setPosition(pan, panAngle);                              // Set pan angle
-  dxlCtrl->setPosition(tilt, tiltAngle);                            // Set tilt angle 
+  dxlCtrl->setServoPosition(pan, panAngle);                              // Set pan angle
+  dxlCtrl->setServoPosition(tilt, tiltAngle);                            // Set tilt angle 
 }
 
 // Reset the turret to default position
 void Turret::resetTurret() {
   rotateTurret(TURRET_PAN_DEFAULT_DEG, TURRET_TILT_DEFAULT_DEG);    // Reset turret to default position
+}
+
+// Print current turret angles to Serial
+void Turret::printTurretStatus() {
+  Serial.println("\nTurret Status:");
+  Serial.print("Pan: ");
+  Serial.print(dxlCtrl->getServoPosition(pan));
+  Serial.print(" | Tilt: ");
+  Serial.println(dxlCtrl->getServoPosition(tilt));
+  Serial.println("---");
 }

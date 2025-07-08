@@ -11,6 +11,7 @@ class Turret {
     void initialize();                                                      // Initialize the turret servos
     void rotateTurret(float panAngle, float tiltAngle);                     // Rotate the turret to specified angles
     void resetTurret();                                                     // Reset the turret to default position
+    void printTurretStatus();                                               // Print current turret angles to Serial 
         
   private:
     uint8_t pan, tilt;                                                      // Servo IDs for pan, tilt and sensor

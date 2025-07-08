@@ -29,7 +29,6 @@ void setup() {
   dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
 
   if (!dxlController.isConnected()) {
-    dxlController.close();                                      // Close the connection if not successful
     Serial.println("Failed to connect to Dynamixel servos.");   // Print error message
     while (true);                                               // Halt execution if connection fails
   }
@@ -41,6 +40,7 @@ void setup() {
   
   hexapod->setGaitType(0);                // Set default gait
   hexapod->setGaitSpeed(0.5);             // Set default speed
+  hexapod->setServoSpeed(0.5);            // Set default servo speed
 
   Serial.println("Dynamixel Controller initialized.");
   
@@ -60,6 +60,9 @@ void setup() {
   
   Serial.println("SpiderBot Setup Complete.");
   Serial.println("Ready to receive commands.");
+
+  hexapod->printLegsStatus();  // Print initial status of all legs
+  turret->printTurretStatus(); // Print initial status of turret
 
 }
 

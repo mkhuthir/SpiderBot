@@ -12,9 +12,18 @@ void Leg::initialize() {
 
 // Set angles for the leg joints
 void Leg::setJointAngles(float coxaAngle, float femurAngle, float tibiaAngle) {
-  dxlCtrl->setPosition(coxa, coxaAngle);      // Set coxa angle
-  dxlCtrl->setPosition(femur, femurAngle);    // Set femur angle
-  dxlCtrl->setPosition(tibia, tibiaAngle);    // Set tibia angle
+  dxlCtrl->setServoPosition(coxa, coxaAngle);      // Set coxa angle
+  dxlCtrl->setServoPosition(femur, femurAngle);    // Set femur angle
+  dxlCtrl->setServoPosition(tibia, tibiaAngle);    // Set tibia angle
+}
+
+void Leg::printJointAngles() {
+  Serial.print("Coxa: ");
+  Serial.print(getCoxaAngle());
+  Serial.print(" | Femur: ");
+  Serial.print(getFemurAngle());
+  Serial.print(" | Tibia: ");
+  Serial.println(getTibiaAngle());
 }
 
 // Lift the leg to a default position
