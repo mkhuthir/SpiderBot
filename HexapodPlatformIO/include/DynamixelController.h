@@ -15,7 +15,8 @@ class DynamixelController {
     bool  isConnected();                                                      // Check if the controller is connected
     void  setPosition(uint8_t id, float angleDeg);                            // Set servo position in degrees
     void  setSpeed(uint8_t id, float rpm);                                    // Set servo speed in RPM
-    float readPosition(uint8_t id);                                           // Read current servo position in degrees  
+    float readPosition(uint8_t id);                                           // Read current servo position in degrees 
+    void  close();                                                            // Close the controller connection 
     
 
   private:

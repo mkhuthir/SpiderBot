@@ -46,16 +46,8 @@ void setup() {
   
   // Initialize Sensor Turret
   turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxlController); // Create Turret instance with Dynamixel controller
-  if (!turret->isConnected()) {                                       // Check if turret servos are connected
-    dxlController.close();                                            // Close the Dynamixel controller connection
-    Serial.println("Failed to connect to Sensor Turret servos.");     // Print error message
-    while (true);                                                     // Halt execution if connection fails
-  };
-
-  Serial.println("Sensor Turret connected successfully.");  
-
-  turret->initialize();                   // Initialize turret servos
-  turret->resetTurret();                  // Reset turret to default position
+  turret->initialize();                                               // Initialize turret servos
+  turret->resetTurret();                                              // Reset turret to default position
   Serial.println("Sensor Turret initialized.");
 
   // Initialize RC Controller

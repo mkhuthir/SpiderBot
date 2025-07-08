@@ -38,3 +38,8 @@ void DynamixelController::setSpeed(uint8_t id, float rpm) {
 float DynamixelController::readPosition(uint8_t id) {
   return dxl.getPresentPosition(id, UNIT_DEGREE); // Read position in degrees
 }
+
+// Close the Dynamixel controller connection
+void DynamixelController::close() {
+// End the connection to the Dynamixel controller
+}

@@ -3,7 +3,6 @@
 Turret::Turret(uint8_t panID, uint8_t tiltID, DynamixelController* controller)
   : pan(panID), tilt(tiltID), dxlCtrl(controller) {}
 
-
 // Initialize the turret servos
 void Turret::initialize() {
   dxlCtrl->initializeServo(pan,TURRET_PAN_MIN_ANGLE_DEG, TURRET_PAN_MAX_ANGLE_DEG);     // Initialize pan servo with limits
