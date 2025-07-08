@@ -37,8 +37,12 @@ void setup() {
   // Initialize Hexapod
   hexapod = new Hexapod(&dxlController);  // Create Hexapod instance with Dynamixel controller
   hexapod->initialize();                  // Initialize all legs
-  hexapod->setGait(0);                    // Set default gait
-  hexapod->setSpeed(0.5);                 // Set default speed
+  
+  hexapod->setGaitType(0);                // Set default gait
+  hexapod->setGaitSpeed(0.5);             // Set default speed
+
+  hexapod->standUp();                     // Make the hexapod stand up
+
   Serial.println("Dynamixel Controller initialized.");
   
   // Initialize Sensor Turret
@@ -61,5 +65,5 @@ void setup() {
 }
 
 void loop() {
-
+  
 }

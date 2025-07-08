@@ -16,12 +16,12 @@ void Hexapod::initialize() {
 }
 
 // Set the gait type
-void Hexapod::setGait(int gaitType) {
+void Hexapod::setGaitType(int gaitType) {
   gaitState = gaitType;
 }
 
 // Set the gait speed
-void Hexapod::setSpeed(float speed) {
+void Hexapod::setGaitSpeed(float speed) {
   robotSpeed = speed;
 }
 

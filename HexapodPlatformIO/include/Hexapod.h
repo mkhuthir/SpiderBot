@@ -9,8 +9,8 @@ class Hexapod {
   public:
     Hexapod(DynamixelController* controller); // Constructor
     void initialize();                        // Initialize the hexapod
-    void setGait(int gaitType);               // Set the gait type
-    void setSpeed(float speed);               // Set the gait speed
+    void setGaitType(int gaitType);           // Set the gait type
+    void setGaitSpeed(float speed);           // Set the gait speed
    
     void standUp();                           // Stand up the hexapod
     void sitDown();                           // Sit down the hexapod
