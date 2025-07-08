@@ -29,8 +29,9 @@ void setup() {
   dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
 
   if (!dxlController.isConnected()) {
-    Serial.println("Failed to connect to Dynamixel servos.");
-    while (true); // Halt execution if connection fails
+    dxlController.close();                                      // Close the connection if not successful
+    Serial.println("Failed to connect to Dynamixel servos.");   // Print error message
+    while (true);                                               // Halt execution if connection fails
   }
   Serial.println("Dynamixel Controller connected successfully.");
 
@@ -41,12 +42,18 @@ void setup() {
   hexapod->setGaitType(0);                // Set default gait
   hexapod->setGaitSpeed(0.5);             // Set default speed
 
-  hexapod->standUp();                     // Make the hexapod stand up
-
   Serial.println("Dynamixel Controller initialized.");
   
   // Initialize Sensor Turret
-  turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxlController);
+  turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxlController); // Create Turret instance with Dynamixel controller
+  if (!turret->isConnected()) {                                       // Check if turret servos are connected
+    dxlController.close();                                            // Close the Dynamixel controller connection
+    Serial.println("Failed to connect to Sensor Turret servos.");     // Print error message
+    while (true);                                                     // Halt execution if connection fails
+  };
+
+  Serial.println("Sensor Turret connected successfully.");  
+
   turret->initialize();                   // Initialize turret servos
   turret->resetTurret();                  // Reset turret to default position
   Serial.println("Sensor Turret initialized.");
