@@ -1,1 +1,1 @@
-../HexapodPlatformIO/include/GaitController.h
+../SpiderBotVSCode/include/GaitController.h

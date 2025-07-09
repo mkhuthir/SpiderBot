@@ -1,1 +1,1 @@
-../HexapodPlatformIO/include/DynamixelController.h
+../SpiderBotVSCode/include/DynamixelController.h

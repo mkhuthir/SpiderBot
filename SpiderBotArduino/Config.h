@@ -1,1 +1,1 @@
-../HexapodPlatformIO/include/Config.h
+../SpiderBotVSCode/include/Config.h
