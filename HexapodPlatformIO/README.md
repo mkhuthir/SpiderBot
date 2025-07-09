@@ -1,8 +1,8 @@
-# RoboSpider Hexapod PlatformIO
+# RoboSpider Hexapod
 
 ## Overview
 
-This project is a PlatformIO-based firmware for a hexapod robot ("RoboSpider") using Dynamixel servos and various sensors. The code is designed for Arduino-compatible microcontrollers and provides modular control for legs, a sensor turret, and optional AXS-1 sensor modules.
+This project is a firmware for a hexapod robot ("RoboSpider") using Dynamixel AX-18A servos. The code is designed for Arduino-compatible microcontrollers and provides modular control for legs, a sensor turret, and optional AX-S1 sensor modules.
 
 ## Features
 
@@ -11,7 +11,7 @@ This project is a PlatformIO-based firmware for a hexapod robot ("RoboSpider") u
 - **Sensor Turret:** Pan/tilt turret control for sensors or cameras.
 - **RC Controller Support:** Remote control via serial interface.
 - **Gait Controller:** Multiple walking gaits and speed control.
-- **AXS-1 Sensor Integration:** Read temperature, luminosity, and sound level; control onboard LED.
+- **AX-S1 Sensor Integration:** Read temperature, luminosity, and sound level; control onboard LED.
 
 ## Directory Structure
 
@@ -62,7 +62,7 @@ HexapodPlatformIO/
 ## File Descriptions
 
 - `src/main.cpp` - Main firmware entry point; initializes all modules and runs the main loop.
-- `include/AXS1Sensor.h` / `src/AXS1Sensor.cpp` - Interface for the AXS-1 sensor module.
+- `include/AXS1Sensor.h` / `src/AXS1Sensor.cpp` - Interface for the AX-S1 sensor module.
 - `DynamixelController.*` - Handles low-level servo communication.
 - `Hexapod.*`, `Leg.*` - Implements hexapod kinematics and leg control.
 - `Turret.*` - Controls the pan/tilt sensor turret.
@@ -76,4 +76,4 @@ This project is provided for educational and research purposes. Please check ind
 ## Credits
 
 - Uses [DynamixelWorkbench](http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) library by ROBOTIS.
-- Developed by [Your Name or
+- Developed by Muthanna Alwahash (c) 2025
