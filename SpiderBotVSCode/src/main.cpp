@@ -14,6 +14,8 @@
 DynamixelController dxlController(DXL_SERIAL, DXL_DIR_PIN); // Create an instance of DynamixelController with the specified serial port and direction pin
 RCController rcController(RC_SERIAL);                       // Create an instance of RCController with the specified serial port
 
+DynamixelWorkbench dxl;             // DynamixelWorkbench instance for advanced control
+
 Hexapod*        hexapod;            // Pointer to Hexapod instance
 Turret*         turret;             // Pointer to Turret instance
 AXS1Sensor*     sensor;             // Pointer to AXS1Sensor instance
@@ -63,7 +65,8 @@ void setup() {
   Serial.println("Ready to receive commands.");
 
   // Initialize AX-S1 Sensor
-  sensor = new AXS1Sensor(&dxlController, AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
+  dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); // Initialize DynamixelWorkbench with the specified serial port and baud rate
+  sensor = new AXS1Sensor(&dxl, AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
   if (sensor->ping()) {
       Serial.println("AX-S1 detected!");
   } else {
