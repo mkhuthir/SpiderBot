@@ -60,12 +60,38 @@ void setup() {
   Serial.println("SpiderBot Setup Complete.");
   Serial.println("Ready to receive commands.");
 
+  // Initialize AX-S1 Sensor
+  sensor = new AXS1Sensor(&dxl, AXS1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
+  if (sensor->ping()) {
+      Serial.println("AX-S1 detected!");
+  } else {
+      Serial.println("AX-S1 not detected!");
+  }
+
   hexapod->printLegsStatus();  // Print initial status of all legs
   turret->printTurretStatus(); // Print initial status of turret
 
 }
 
 void loop() {
+
+  int temperature = sensor->readTemperature();
+  if (temperature != -1) {
+      Serial.print("Temperature: ");
+      Serial.println(temperature);
+  }
+
+  int luminosity = sensor->readLuminosity();
+  if (luminosity != -1) {
+      Serial.print("Luminosity: ");
+      Serial.println(luminosity);
+  }
+
+  int soundLevel = sensor->readSoundLevel();
+  if (soundLevel != -1) {
+      Serial.print("Sound Level: ");
+      Serial.println(soundLevel);
+  }
 
   turret->rotateTurretLeft();  // Rotate turret to the left for testing
   delay(1000);                 // Wait for 1 second
