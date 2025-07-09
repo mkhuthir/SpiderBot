@@ -6,6 +6,7 @@
 #include "Leg.h"
 #include "Hexapod.h"
 #include "Turret.h"
+#include "AXS1Sensor.h"
 #include "RCController.h"
 #include "GaitController.h"
 
