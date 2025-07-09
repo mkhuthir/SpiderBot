@@ -1,8 +1,8 @@
-# RoboSpider Hexapod
+# SpiderBot Hexapod
 
 ## Overview
 
-This project is a firmware for a hexapod robot ("RoboSpider") using Dynamixel AX-18A servos. The code is designed for Arduino-compatible microcontrollers and provides modular control for legs, a sensor turret, and optional AX-S1 sensor modules.
+This project is a firmware for a hexapod robot ("SpiderBot") using Dynamixel AX-18A servos. The code is designed for Arduino-compatible microcontrollers and provides modular control for legs, a sensor turret, and optional AX-S1 sensor modules.
 
 ## Features
 
