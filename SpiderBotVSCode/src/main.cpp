@@ -15,6 +15,7 @@ RCController rcController(RC_SERIAL);                       // Create an instanc
 
 Hexapod*        hexapod;            // Pointer to Hexapod instance
 Turret*         turret;             // Pointer to Turret instance
+AXS1Sensor*     sensor;             // Pointer to AXS1Sensor instance
 GaitController* gaitController;     // Pointer to GaitController instance
 
 void setup() {
@@ -61,7 +62,7 @@ void setup() {
   Serial.println("Ready to receive commands.");
 
   // Initialize AX-S1 Sensor
-  sensor = new AXS1Sensor(&dxl, AXS1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
+  sensor = new AXS1Sensor(&dxlController, AXS1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
   if (sensor->ping()) {
       Serial.println("AX-S1 detected!");
   } else {
