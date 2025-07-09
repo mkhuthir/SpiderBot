@@ -1,4 +1,4 @@
-# RoboSpider
+# SpiderBot
 
 ![MuthSpider](./img/MuthSpider.png)<br>
 
