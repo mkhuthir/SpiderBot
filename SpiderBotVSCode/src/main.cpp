@@ -63,7 +63,7 @@ void setup() {
   Serial.println("Ready to receive commands.");
 
   // Initialize AX-S1 Sensor
-  sensor = new AXS1Sensor(&dxlController, AXS1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
+  sensor = new AXS1Sensor(&dxlController, AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
   if (sensor->ping()) {
       Serial.println("AX-S1 detected!");
   } else {
