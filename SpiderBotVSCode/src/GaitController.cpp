@@ -43,9 +43,9 @@ void GaitController::update() {
 
 void GaitController::doWaveGait() {
     // One leg swings at a time
-    robot->moveLeg(currentPhase, 512, 300, 700);  // swing phase
+    //robot->moveLeg(currentPhase, 512, 300, 700);  // swing phase
     delay(50);
-    robot->moveLeg(currentPhase, 512, 512, 512);  // stance phase
+    //robot->moveLeg(currentPhase, 512, 512, 512);  // stance phase
 
     currentPhase = (currentPhase + 1) % 6;
 }
@@ -58,11 +58,11 @@ void GaitController::doRippleGait() {
     };
 
     for (int i = 0; i < 2; ++i) {
-        robot->moveLeg(swingLegs[i], 512, 300, 700);
+        //robot->moveLeg(swingLegs[i], 512, 300, 700);
     }
     delay(50);
     for (int i = 0; i < 2; ++i) {
-        robot->moveLeg(swingLegs[i], 512, 512, 512);
+        //robot->moveLeg(swingLegs[i], 512, 512, 512);
     }
 
     currentPhase = (currentPhase + 1) % 3;
@@ -83,11 +83,11 @@ void GaitController::doTripodGait() {
     }
 
     for (int i = 0; i < 3; ++i) {
-        robot->moveLeg(swingGroup[i], 512, 300, 700);
+        //robot->moveLeg(swingGroup[i], 512, 300, 700);
     }
     delay(50);
     for (int i = 0; i < 3; ++i) {
-        robot->moveLeg(swingGroup[i], 512, 512, 512);
+        //robot->moveLeg(swingGroup[i], 512, 512, 512);
     }
 
     currentPhase = (currentPhase + 1) % 2;
