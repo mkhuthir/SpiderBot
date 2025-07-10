@@ -1,31 +1,24 @@
 #ifndef DYNAMIXEL_CONTROLLER_H
 #define DYNAMIXEL_CONTROLLER_H
 
-#include <Dynamixel2Arduino.h>
-#include "Config.h"
+#include <DynamixelWorkbench.h>
 
-
-class DynamixelController {
-  public:
-    DynamixelController(HardwareSerial& serial, uint8_t dirPin);              // Constructor
-    
-    void  begin(int baudrate, float protocolVersion = DXL_PROTOCOL_VERSION);  // Initialize the controller
-    void  initializeServo(uint8_t id, float minAngle, float maxAngle);        // Initialize a servo with its ID and angle limits
-
-    bool  isConnected();                                                      // Check if the controller is connected
-    void  setServoPosition(uint8_t id, float angleDeg);                       // Set servo position in degrees
-    void  setServoSpeed(uint8_t id, float percent);                           // Set servo speed in percentage of max speed
-    float getServoPosition(uint8_t id);                                       // Read current servo position in degrees 
-
+class DynamixelController
+{
   private:
-    Dynamixel2Arduino dxl;                // Dynamixel controller instance
+    DynamixelWorkbench dxl;
+    const char* device_name;
+    const uint32_t baudrate;
 
-    struct ServoLimit {                   // Struct to hold servo limits
-      float minAngle;                     // Minimum angle limit in degrees
-      float maxAngle;                     // Maximum angle limit in degrees
-    };
-    
-    ServoLimit limits[MAX_NO_OF_SERVOS];  // Array to hold limits for servos
+  public:
+    DynamixelController(const char* device, uint32_t baud);
+    bool begin();
+    bool ping(uint8_t id);
+    bool torqueOn(uint8_t id);
+    bool torqueOff(uint8_t id);
+    bool setGoalPosition(uint8_t id, uint32_t position);
+    bool setGoalVelocity(uint8_t id, uint32_t velocity);
+    bool readPresentPosition(uint8_t id, uint32_t &position);
 };
 
 #endif
