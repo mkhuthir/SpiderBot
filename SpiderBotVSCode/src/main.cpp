@@ -10,7 +10,6 @@
 #include "AXS1Sensor.h"
 #include "GaitController.h"
 
-
 DynamixelController dxlController(DXL_SERIAL, DXL_DIR_PIN); // Create an instance of DynamixelController with the specified serial port and direction pin
 RCController rcController(RC_SERIAL);                       // Create an instance of RCController with the specified serial port
 
