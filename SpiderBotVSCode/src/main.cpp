@@ -29,15 +29,6 @@ void setup() {
 
   Serial.println("SpiderBot Starting Setup...");
 
-  // Initialize Dynamixel Controller
-  dxlController.begin(DXL_BAUD_RATE, DXL_PROTOCOL_VERSION);
-
-  if (!dxlController.isConnected()) {
-    Serial.println("Failed to connect to Dynamixel servos.");   // Print error message
-    while (true);                                               // Halt execution if connection fails
-  }
-  Serial.println("Dynamixel Controller connected successfully.");
-
   // Initialize Hexapod
   hexapod = new Hexapod(&dxlController);  // Create Hexapod instance with Dynamixel controller
   hexapod->initialize();                  // Initialize all legs
@@ -53,12 +44,6 @@ void setup() {
   turret->initialize();                                               // Initialize turret servos
   turret->rotateTurretHome();                                         // Rotate turret to home position
   Serial.println("Sensor Turret initialized.");
-  
-  // Initialize Gait Controller
-  gaitController = new GaitController(hexapod, DEFAULT_GAIT_CYCLE_MS);
-  Serial.println("Gait Controller initialized.");
-  Serial.println("SpiderBot Setup Complete.");
-  Serial.println("Ready to receive commands.");
 
   // Initialize AX-S1 Sensor
   dxl.begin(DXL_SERIAL, DXL_BAUD_RATE);           // Initialize DynamixelWorkbench with the specified serial port and baud rate
