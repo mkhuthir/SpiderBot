@@ -108,7 +108,4 @@ void loop() {
 
     //gaitController->update();
     
-   
-  
-  delay(1000); // Wait for 1 second before the next loop iteration
 }
