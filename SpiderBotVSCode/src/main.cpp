@@ -7,7 +7,6 @@
 #include "Hexapod.h"
 #include "Turret.h"
 #include "AXS1Sensor.h"
-#include "RCController.h"
 #include "GaitController.h"
 
 
@@ -53,10 +52,6 @@ void setup() {
   turret->initialize();                                               // Initialize turret servos
   turret->rotateTurretHome();                                         // Rotate turret to home position
   Serial.println("Sensor Turret initialized.");
-
-  // Initialize RC Controller
-  rcController.begin(RC_BAUD_RATE);
-  Serial.println("RC Controller initialized.");
   
   // Initialize Gait Controller
   gaitController = new GaitController(hexapod, DEFAULT_GAIT_CYCLE_MS);
@@ -65,7 +60,7 @@ void setup() {
   Serial.println("Ready to receive commands.");
 
   // Initialize AX-S1 Sensor
-  dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); // Initialize DynamixelWorkbench with the specified serial port and baud rate
+  dxl.begin(DXL_SERIAL, DXL_BAUD_RATE);           // Initialize DynamixelWorkbench with the specified serial port and baud rate
   sensor = new AXS1Sensor(&dxl, AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
   if (sensor->ping()) {
       Serial.println("AX-S1 detected!");
@@ -109,4 +104,10 @@ void loop() {
   turret->rotateTurretHome();  // Rotate turret back to home position for testing
   delay(1000);                 // Wait for 1 second
 
+
+  Serial.print("Temp: "); Serial.println(sensor->readTemperature());
+  Serial.print("Light: "); Serial.println(sensor->readLuminosity());
+  Serial.print("Sound: "); Serial.println(sensor->readSoundLevel());
+
+  delay(1000); // Wait for 1 second before the next loop iteration
 }
