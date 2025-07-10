@@ -10,8 +10,6 @@
 #include "AXS1Sensor.h"                 // Include AXS1Sensor class for managing the AX-S1 sensor
 #include "GaitController.h"             // Include GaitController class for managing the gait of the hexapod
 
-DynamixelController dxlController(DXL_SERIAL, DXL_DIR_PIN); // Create an instance of DynamixelController with the specified serial port and direction pin
-DynamixelWorkbench dxl;             // DynamixelWorkbench instance for advanced control
 
 RC100           RCController;       // RC100 remote controller instance
 int             RcvData = 0;        // Variable to store received data from the remote controller
@@ -27,6 +25,8 @@ void setup() {
     Serial.begin(DEBUG_BAUD_RATE);
     while (!Serial); // Wait for Serial to be ready
     Serial.println("SpiderBot Starting Setup...");
+
+    // Initialize Dynamixel Controller
 
     // Initialize RC100 Remote Controller
     RCController.begin(RC100_SERIAL);       // Initialize RC100 remote controller
