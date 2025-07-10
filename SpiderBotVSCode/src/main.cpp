@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "Config.h"
 #include "DynamixelController.h"
+#include "RC100Controller.h"
 #include "Leg.h"
 #include "Hexapod.h"
 #include "Turret.h"
