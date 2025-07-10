@@ -2,6 +2,7 @@
 #define AXS1SENSOR_H
 
 #include <DynamixelWorkbench.h>
+#include "Config.h"
 
 // AXS1Sensor class provides an interface to the AXS-1 sensor module
 class AXS1Sensor {
