@@ -75,39 +75,55 @@ void setup() {
 
 void loop() {
 
-  int temperature = sensor->readTemperature();
-  if (temperature != -1) {
-      Serial.print("Temperature: ");
-      Serial.println(temperature);
-  }
+    remote.update();
+    uint16_t command = remote.getCommand();
 
-  int luminosity = sensor->readLuminosity();
-  if (luminosity != -1) {
-      Serial.print("Luminosity: ");
-      Serial.println(luminosity);
-  }
+    if (command & RC100_BTN_U) {
+        Serial.println("U");
+        turret->rotateTurretUp();    // Rotate turret up for testing
+        
+    } else if (command & RC100_BTN_D) {
+        Serial.println("D");
+        turret->rotateTurretDown();  // Rotate turret down for testing
 
-  int soundLevel = sensor->readSoundLevel();
-  if (soundLevel != -1) {
-      Serial.print("Sound Level: ");
-      Serial.println(soundLevel);
-  }
+    } else if (command & RC100_BTN_L) {
+        Serial.println("L");
+        turret->rotateTurretLeft();  // Rotate turret to the left for testing
 
-  turret->rotateTurretLeft();  // Rotate turret to the left for testing
-  delay(1000);                 // Wait for 1 second
-  turret->rotateTurretRight(); // Rotate turret to the right for testing
-  delay(1000);                 // Wait for 1 second
-  turret->rotateTurretUp();    // Rotate turret up for testing
-  delay(1000);                 // Wait for 1 second
-  turret->rotateTurretDown();  // Rotate turret down for testing
-  delay(1000);                 // Wait for 1 second
-  turret->rotateTurretHome();  // Rotate turret back to home position for testing
-  delay(1000);                 // Wait for 1 second
+    } else if (command & RC100_BTN_R) {
+        Serial.println("R");
+        turret->rotateTurretRight(); // Rotate turret to the right for testing
+        
+    } else if (command & RC100_BTN_1) {
+        Serial.println("Idle mode");
+        //gaitController->setGait(GAIT_IDLE);
 
+    } else if (command & RC100_BTN_2) {
+        Serial.println("Wave gait selected");
+        //gaitController->setGait(GAIT_WAVE);
 
-  Serial.print("Temp: "); Serial.println(sensor->readTemperature());
-  Serial.print("Light: "); Serial.println(sensor->readLuminosity());
-  Serial.print("Sound: "); Serial.println(sensor->readSoundLevel());
+    } else if (command & RC100_BTN_3) {
+        Serial.println("Ripple gait selected");
+        //gaitController->setGait(GAIT_RIPPLE);
 
+    } else if (command & RC100_BTN_4) {
+        Serial.println("Tripod gait selected");
+        //gaitController->setGait(GAIT_TRIPOD);
+
+    } else if (command & RC100_BTN_5) {
+        Serial.println("tURRET HOME");
+        turret->rotateTurretHome();  // Rotate turret back to home position for testing
+
+    } else if (command & RC100_BTN_6) {
+        Serial.print("Temp: "); Serial.println(sensor->readTemperature());
+        Serial.print("Light: "); Serial.println(sensor->readLuminosity());
+        Serial.print("Sound: "); Serial.println(sensor->readSoundLevel());
+        
+    }
+
+    //gaitController->update();
+    
+   
+  
   delay(1000); // Wait for 1 second before the next loop iteration
 }

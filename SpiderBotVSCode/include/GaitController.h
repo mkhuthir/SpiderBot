@@ -1,21 +1,35 @@
 #ifndef GAITCONTROLLER_H
 #define GAITCONTROLLER_H
 
+#include <Arduino.h>
 #include "Hexapod.h"
-#include "Config.h"
 
+enum GaitType {
+    GAIT_IDLE,
+    GAIT_WAVE,
+    GAIT_RIPPLE,
+    GAIT_TRIPOD
+};
 
 class GaitController {
-  public:
-    GaitController(Hexapod* hexapod, unsigned long cycleDuration);
+private:
+    Hexapod* robot;
+    GaitType gait;
+    unsigned long lastUpdate;
+    int currentPhase;
+    unsigned long stepInterval;
+
+    void doWaveGait();
+    void doRippleGait();
+    void doTripodGait();
+
+public:
+    GaitController(Hexapod* hexapod);
+
+    void setGait(GaitType newGait);
+    void setStepInterval(unsigned long interval); // set gait speed
     void update();
-    void setCycleDuration(unsigned long duration);
-  private:
-    Hexapod* hexapod;
-    unsigned long cycleDuration;  // Duration of one complete gait cycle in milliseconds
-    unsigned long lastPhaseTime;  // Timestamp of the last phase change
-    bool phase;                   // false = A moves, true = B moves
-    void executePhase();          // Execute the current phase of the gait
 };
 
 #endif
+// GaitController.h
