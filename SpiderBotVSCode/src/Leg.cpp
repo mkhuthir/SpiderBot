@@ -17,6 +17,10 @@ void Leg::setJointAngles(float coxaAngle, float femurAngle, float tibiaAngle) {
   dxlCtrl->setGoalPosition(tibia, tibiaAngle);    // Set tibia angle
 }
 
+    float getCoxaAngle(){};                        // Get current coxa angle
+    float getFemurAngle(){};                      // Get current femur angle
+    float getTibiaAngle(){};                     // Get current tibia angle 
+
 void Leg::printJointAngles() {
   Serial.print("Coxa: ");
   Serial.print(getCoxaAngle());
