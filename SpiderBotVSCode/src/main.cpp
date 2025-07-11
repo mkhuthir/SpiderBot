@@ -116,6 +116,13 @@ void loop() {
         Serial.print("Temp: "); Serial.println(sensor->readTemperature());
         Serial.print("Light: "); Serial.println(sensor->readLuminosity());
         Serial.print("Sound: "); Serial.println(sensor->readSoundLevel());
+        // Bulk read
+        Serial.println("Bulck reading postions");
+        std::vector<uint32_t> positions;
+        controller.bulkReadPositions({1,2,3,4,5,6}, positions);
+        for (auto p : positions) {
+            Serial.println(p);
+        }    
         
     }
   }
