@@ -10,15 +10,17 @@
 #include "AXS1Sensor.h"                 // Include AXS1Sensor class for managing the AX-S1 sensor
 #include "GaitController.h"             // Include GaitController class for managing the gait of the hexapod
 
+
+// Global variables and instances
 DynamixelController dxl;                // Initialize DynamixelWorkbench with the specified serial port and baud rate
 RC100               RCController;       // RC100 remote controller instance
 int                 RcvData = 0;        // Variable to store received data from the remote controller
-
 Hexapod*            hexapod;            // Pointer to Hexapod instance
 Turret*             turret;             // Pointer to Turret instance
 AXS1Sensor*         sensor;             // Pointer to AXS1Sensor instance
 GaitController*     gaitController;     // Pointer to GaitController instance
 
+// Setup function to initialize the robot components
 void setup() {
 
     // Initialize Serial for debugging
@@ -27,21 +29,19 @@ void setup() {
     Serial.println("SpiderBot Starting Setup...");
 
     // Initialize Dynamixel Controller
-    dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); // Initialize Dynamixel controller with specified serial port and baud rate
+    dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); 
     Serial.println("Dynamixel Controller initialized.");
     
     // Initialize RC100 Remote Controller
-    RCController.begin(RC100_SERIAL);       // Initialize RC100 remote controller
+    RCController.begin(RC100_SERIAL);     
     Serial.println("RC100 Remote Controller initialized.");
 
-    // Initialize Hexapod
+    // Create Hexapod instance
     hexapod = new Hexapod(&dxl);  // Create Hexapod instance with Dynamixel controller
     hexapod->initialize();                  // Initialize all legs
-    
     hexapod->setGaitType(0);                // Set default gait
     hexapod->setGaitSpeed(0.5);             // Set default speed
     hexapod->setServoSpeed(0.5);            // Set default servo speed
-
     Serial.println("Dynamixel Controller initialized.");
     
     // Initialize Sensor Turret
@@ -57,11 +57,9 @@ void setup() {
         Serial.println("AX-S1 not detected!");
     }
 
-    hexapod->printLegsStatus();  // Print initial status of all legs
-    turret->printTurretStatus(); // Print initial status of turret
-
 }
 
+// Loop function to handle remote controller input and control the robot
 void loop() {
 
   if (RCController.available())
@@ -108,6 +106,9 @@ void loop() {
 
     } else if (RcvData & RC100_BTN_6) {
         Serial.println("6");
+
+        hexapod->printLegsStatus();  // Print initial status of all legs
+        turret->printTurretStatus(); // Print initial status of turret
 
         Serial.print("Temp: "); Serial.println(sensor->readTemperature());
         Serial.print("Light: "); Serial.println(sensor->readLuminosity());
