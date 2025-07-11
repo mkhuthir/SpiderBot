@@ -15,12 +15,19 @@ class DynamixelController
     DynamixelController(const char* device, uint32_t baud);
 
     bool begin();
-    void initializeServo(uint8_t id);
+
     bool ping(uint8_t id);
+
+    void initializeServo(uint8_t id);
+    void moveServo(uint8_t id, uint16_t position, uint16_t speed);
+    void enableTorque(uint8_t id);
+    void disableTorque(uint8_t id);
+
     bool torqueOn(uint8_t id);
     bool torqueOff(uint8_t id);
     bool setGoalPosition(uint8_t id, uint32_t position);
     bool setGoalVelocity(uint8_t id, uint32_t velocity);
+
     bool readPresentPosition(uint8_t id, uint32_t &position);
 
     // NEW
