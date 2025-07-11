@@ -36,20 +36,20 @@ void setup() {
     Serial.println("RC100 Remote Controller initialized.");
 
     // Create Hexapod instance
-    hexapod = new Hexapod(&dxl);  // Create Hexapod instance with Dynamixel controller
-    hexapod->initialize();                  // Initialize all legs
-    hexapod->setGaitType(0);                // Set default gait
-    hexapod->setGaitSpeed(0.5);             // Set default speed
-    hexapod->setServoSpeed(0.5);            // Set default servo speed
+    hexapod = new Hexapod(&dxl);                                    // Create Hexapod instance with Dynamixel controller
+    hexapod->initialize();                                          // Initialize all legs
+    hexapod->setGaitType(0);                                        // Set default gait
+    hexapod->setGaitSpeed(0.5);                                     // Set default speed
+    hexapod->setServoSpeed(0.5);                                    // Set default servo speed
     Serial.println("Dynamixel Controller initialized.");
     
     // Initialize Sensor Turret
-    turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxl); // Create Turret instance with Dynamixel controller
-    turret->initialize();                                     // Initialize turret servos
+    turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxl);       // Create Turret instance with Dynamixel controller
+    turret->initialize();                                           // Initialize turret servos
     Serial.println("Sensor Turret initialized.");
 
     // Initialize AX-S1 Sensor
-    sensor = new AXS1Sensor(dxl.getWorkbench(), AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
+    sensor = new AXS1Sensor(dxl.getWorkbench(), AX_S1_SENSOR_ID);   // Create AX-S1 sensor instance with Dynamixel controller
     if (sensor->ping()) {
         Serial.println("AX-S1 detected!");
     } else {
@@ -57,9 +57,8 @@ void setup() {
     }
 
     // Initialize Gait Controller
-    //gaitController = new GaitController(hexapod, &dxl); // Create GaitController instance with Hexapod and Dynamixel controller
-    //gaitController->initialize();                        // Initialize gait controller
-    //Serial.println("Gait Controller initialized."); 
+    gaitController = new GaitController(hexapod);                   // Create GaitController instance with Hexapod
+    Serial.println("Gait Controller initialized.");
 
 }
 
@@ -90,19 +89,19 @@ void loop() {
         
     } else if (RCRx & RC100_BTN_1) {
         Serial.println("1");
-        //gaitController->setGait(GAIT_IDLE);
+        gaitController->setGait(GAIT_IDLE);
 
     } else if (RCRx & RC100_BTN_2) {
         Serial.println("2");
-        //gaitController->setGait(GAIT_WAVE);
+        gaitController->setGait(GAIT_WAVE);
 
     } else if (RCRx & RC100_BTN_3) {
         Serial.println("3");
-        //gaitController->setGait(GAIT_RIPPLE);
+        gaitController->setGait(GAIT_RIPPLE);
 
     } else if (RCRx & RC100_BTN_4) {
         Serial.println("4");
-        //gaitController->setGait(GAIT_TRIPOD);
+        gaitController->setGait(GAIT_TRIPOD);
 
     } else if (RCRx & RC100_BTN_5) {
         Serial.println("5");
@@ -129,7 +128,7 @@ void loop() {
     }
   }
 
-    //gaitController->update();
+    gaitController->update();
 
     // Move all legs to neutral
     //std::vector<uint8_t> ids = {1,2,3,4,5,6};
