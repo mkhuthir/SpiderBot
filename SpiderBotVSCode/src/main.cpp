@@ -70,7 +70,7 @@ void setup() {
 
 void loop() {
 
-  if (Controller.available())
+  if (RCController.available())
   {
     RcvData = Controller.readData();
     Serial.print("RcvData = ");
