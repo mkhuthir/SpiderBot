@@ -8,6 +8,12 @@ bool DynamixelController::begin()
   return dxl.begin(device_name, baudrate);
 }
 
+void DynamixelController::initializeServo(uint8_t id) {
+    dxl.torqueOff(id);
+    dxl.setOperatingMode(id, OP_POSITION); // or OP_VELOCITY / OP_PWM if you want
+    dxl.torqueOn(id);
+}
+
 bool DynamixelController::ping(uint8_t id)
 {
   uint16_t model_number;
