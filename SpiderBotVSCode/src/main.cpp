@@ -28,6 +28,7 @@ void setup() {
 
     // Initialize Dynamixel Controller
     dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); // Initialize Dynamixel controller with specified serial port and baud rate
+    Serial.println("Dynamixel Controller initialized.");
     
     // Initialize RC100 Remote Controller
     RCController.begin(RC100_SERIAL);       // Initialize RC100 remote controller
@@ -119,7 +120,7 @@ void loop() {
         dxl.bulkReadPositions({1,2,3,4,5,6}, positions);
         for (auto p : positions) {
             Serial.println(p);
-            
+
         }    
         
     }
