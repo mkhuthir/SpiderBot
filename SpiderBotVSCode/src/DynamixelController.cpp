@@ -38,8 +38,9 @@ bool DynamixelController::readPresentPosition(uint8_t id, uint32_t &position) {
 bool DynamixelController::syncWritePosition(const std::vector<uint8_t>& ids, const std::vector<uint32_t>& positions) {
     if (ids.size() != positions.size() || ids.empty()) return false;
     std::vector<int32_t> pos32(positions.begin(), positions.end());
-    uint8_t index = dxl.getIndex(ids[0], "Goal_Position");
-    return dxl.syncWrite(index, const_cast<uint8_t*>(ids.data()), ids.size(), pos32.data(), 1);
+    const ControlItem* goal_position_item = dxl.getItemInfo(ids[0], "Goal_Position");
+    uint16_t goal_position_address = goal_position_item->address;
+    return dxl.syncWrite(goal_position_address, const_cast<uint8_t*>(ids.data()), ids.size(), pos32.data(), 1);
 }
 
 bool DynamixelController::bulkReadPositions(const std::vector<uint8_t>& ids, std::vector<uint32_t>& positions) {
