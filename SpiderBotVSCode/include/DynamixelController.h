@@ -23,8 +23,6 @@ class DynamixelController
     void enableTorque(uint8_t id);
     void disableTorque(uint8_t id);
 
-    bool torqueOn(uint8_t id);
-    bool torqueOff(uint8_t id);
     bool setGoalPosition(uint8_t id, uint32_t position);
     bool setGoalVelocity(uint8_t id, uint32_t velocity);
 
