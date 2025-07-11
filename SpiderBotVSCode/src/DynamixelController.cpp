@@ -14,20 +14,23 @@ void DynamixelController::initializeServo(uint8_t id) {
     dxl.torqueOn(id);
 }
 
+void DynamixelController::moveServo(uint8_t id, uint16_t position, uint16_t speed) {
+    dxl.goalVelocity(id, speed);
+    dxl.goalPosition(id, position);
+}
+
+void DynamixelController::enableTorque(uint8_t id) {
+    dxl.torqueOn(id);
+}
+
+void DynamixelController::disableTorque(uint8_t id) {
+    dxl.torqueOff(id);
+}
+
 bool DynamixelController::ping(uint8_t id)
 {
   uint16_t model_number;
   return dxl.ping(id, &model_number);
-}
-
-bool DynamixelController::torqueOn(uint8_t id)
-{
-  return dxl.torqueOn(id);
-}
-
-bool DynamixelController::torqueOff(uint8_t id)
-{
-  return dxl.torqueOff(id);
 }
 
 bool DynamixelController::setGoalPosition(uint8_t id, uint32_t position)
