@@ -39,11 +39,6 @@ bool DynamixelController::readPresentPosition(uint8_t id, uint32_t &position)
   return dxl.readControlTableItem("Present_Position", id, &position);
 }
 
-// =======================
-// NEW FUNCTIONS
-// =======================
-
-// Scan for active Dynamixels
 std::vector<uint8_t> DynamixelController::scan(uint8_t start_id, uint8_t end_id)
 {
   std::vector<uint8_t> found_ids;
