@@ -120,7 +120,6 @@ void loop() {
         dxl.bulkReadPositions({1,2,3,4,5,6}, positions);
         for (auto p : positions) {
             Serial.println(p);
-
         }    
         
     }
