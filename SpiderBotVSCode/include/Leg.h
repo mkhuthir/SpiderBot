@@ -18,7 +18,7 @@ class Leg {
 
   private:
     uint8_t coxa, femur, tibia;                                                             // Servo IDs for the leg joints
-    DynamixelController* dxlCtrl;                                                           // Pointer to the Dynamixel controller instance
+    DynamixelController* dxl;                                                           // Pointer to the Dynamixel controller instance
 };
 
 #endif
