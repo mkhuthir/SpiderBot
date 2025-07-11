@@ -1,4 +1,4 @@
-#ifndef TURRET_H
+#ifdef TURRET_H
 #define TURRET_H
 
 #include "DynamixelController.h"
@@ -23,4 +23,4 @@ class Turret {
     DynamixelController* dxl;                                           // Pointer to the Dynamixel controller instance
 };
 
-#endif
+#endif // TURRET_H

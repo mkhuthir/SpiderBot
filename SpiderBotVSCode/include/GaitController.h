@@ -1,5 +1,5 @@
-#ifndef GAITCONTROLLER_H
-#define GAITCONTROLLER_H
+#ifdef GaitController_h
+#define GaitController_h
 
 #include <Arduino.h>
 #include "Hexapod.h"
@@ -31,5 +31,4 @@ public:
     void update();
 };
 
-#endif
-// GaitController.h
+#endif // GaitController_h

@@ -1,4 +1,4 @@
-#ifndef HEXAPOD_H
+#ifdef HEXAPOD_H
 #define HEXAPOD_H
 
 #include "Leg.h"
@@ -25,4 +25,4 @@ class Hexapod {
     float                 servoSpeed;   // Current servo speed
 };
 
-#endif
+#endif // HEXAPOD_H

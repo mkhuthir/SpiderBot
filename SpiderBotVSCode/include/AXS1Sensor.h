@@ -1,4 +1,4 @@
-#ifndef AXS1SENSOR_H
+#ifdef AXS1SENSOR_H
 #define AXS1SENSOR_H
 
 #include <DynamixelWorkbench.h>
@@ -23,4 +23,4 @@ public:
     bool    ledOff();           // Turn the sensor's LED off
 };
 
-#endif  // AXS1Sensor.h
+#endif  // AXS1SENSOR_H

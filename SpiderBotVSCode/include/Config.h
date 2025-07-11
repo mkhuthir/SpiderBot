@@ -1,5 +1,6 @@
-#ifndef CONFIG_H
+#ifdef CONFIG_H
 #define CONFIG_H
+// Config.h - Configuration file for SpiderBot project
 
 // ------------------------
 // SERIAL PORTS
@@ -75,4 +76,4 @@
 // ------------------------
 #define DEFAULT_GAIT_CYCLE_MS 1000
 
-#endif
+#endif  // CONFIG_H

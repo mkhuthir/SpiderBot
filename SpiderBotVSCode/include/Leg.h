@@ -1,4 +1,4 @@
-#ifndef LEG_H
+#ifdef LEG_H
 #define LEG_H
 
 #include "DynamixelController.h"
@@ -21,4 +21,4 @@ class Leg {
     DynamixelController* dxl;                                                           // Pointer to the Dynamixel controller instance
 };
 
-#endif
+#endif // LEG_H
