@@ -13,9 +13,9 @@ class Leg {
     void legUp();                                                                           // Move the leg up to a default position
     void legDown();                                                                         // Move the leg down to a default position
     void printJointAngles();                                                                // Print current joint angles to Serial
-    float getCoxaAngle()                        // Get current coxa angle
-    float getFemurAngle()                      // Get current femur angle
-    float getTibiaAngle()                     // Get current tibia angle  
+    float getCoxaAngle();                        // Get current coxa angle
+    float getFemurAngle();                      // Get current femur angle
+    float getTibiaAngle();                     // Get current tibia angle  
 
   private:
     uint8_t coxa, femur, tibia;                                                             // Servo IDs for the leg joints
