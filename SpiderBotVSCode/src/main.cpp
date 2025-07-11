@@ -40,7 +40,7 @@ void setup() {
     Serial.println("RC100 Remote Controller initialized.");
 
     // Initialize Hexapod
-    hexapod = new Hexapod(&dxlController);  // Create Hexapod instance with Dynamixel controller
+    hexapod = new Hexapod(&dxl);  // Create Hexapod instance with Dynamixel controller
     hexapod->initialize();                  // Initialize all legs
     
     hexapod->setGaitType(0);                // Set default gait
@@ -50,7 +50,7 @@ void setup() {
     Serial.println("Dynamixel Controller initialized.");
     
     // Initialize Sensor Turret
-    turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxlController); // Create Turret instance with Dynamixel controller
+    turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxl); // Create Turret instance with Dynamixel controller
     turret->initialize();                                               // Initialize turret servos
     turret->rotateTurretHome();                                         // Rotate turret to home position
     Serial.println("Sensor Turret initialized.");
