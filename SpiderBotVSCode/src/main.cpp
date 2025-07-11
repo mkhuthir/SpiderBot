@@ -10,7 +10,7 @@
 #include "AXS1Sensor.h"                 // Include AXS1Sensor class for managing the AX-S1 sensor
 #include "GaitController.h"             // Include GaitController class for managing the gait of the hexapod
 
-DynamixelController dxl(DXL_SERIAL, DXL_BAUD_RATE);           // Initialize DynamixelWorkbench with the specified serial port and baud rate
+DynamixelController dxl;                // Initialize DynamixelWorkbench with the specified serial port and baud rate
 RC100               RCController;                       // RC100 remote controller instance
 int                 RcvData = 0;                        // Variable to store received data from the remote controller
 
@@ -27,14 +27,8 @@ void setup() {
     Serial.println("SpiderBot Starting Setup...");
 
     // Initialize Dynamixel Controller
-    dxl.begin();
-
-    auto found = dxl.scan();
-      for (auto id : found) {
-        Serial.print("Found ID: "); Serial.println(id);
-        dxl.enableTorque(id);
-    }
-
+    dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); // Initialize Dynamixel controller with specified serial port and baud rate
+    
     // Initialize RC100 Remote Controller
     RCController.begin(RC100_SERIAL);       // Initialize RC100 remote controller
     Serial.println("RC100 Remote Controller initialized.");
@@ -56,7 +50,7 @@ void setup() {
     Serial.println("Sensor Turret initialized.");
 
     // Initialize AX-S1 Sensor
-    sensor = new AXS1Sensor(&dxl, AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
+    sensor = new AXS1Sensor(dxl.getWorkbench(), AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
     if (sensor->ping()) {
         Serial.println("AX-S1 detected!");
     } else {
@@ -119,7 +113,7 @@ void loop() {
         // Bulk read
         Serial.println("Bulck reading postions");
         std::vector<uint32_t> positions;
-        controller.bulkReadPositions({1,2,3,4,5,6}, positions);
+        dxl.bulkReadPositions({1,2,3,4,5,6}, positions);
         for (auto p : positions) {
             Serial.println(p);
         }    

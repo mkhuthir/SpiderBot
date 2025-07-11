@@ -1,4 +1,5 @@
 #include "DynamixelController.h"
+#include <vector>
 
 DynamixelController::DynamixelController() {}
 
@@ -13,6 +14,10 @@ bool DynamixelController::initializeServo(uint8_t id) {
 
 bool DynamixelController::torqueOn(uint8_t id) {
     return dxl.torqueOn(id);
+}
+
+bool DynamixelController::torqueOff(uint8_t id) {
+    return dxl.torqueOff(id);
 }
 
 bool DynamixelController::setGoalPosition(uint8_t id, uint32_t position) {
