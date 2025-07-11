@@ -13,8 +13,7 @@
 
 // Global variables and instances
 DynamixelController dxl;                // Initialize DynamixelWorkbench with the specified serial port and baud rate
-RC100               RCController;       // RC100 remote controller instance
-int                 RcvData = 0;        // Variable to store received data from the remote controller
+RC100               rcCtrl;             // RC100 remote controller instance
 Hexapod*            hexapod;            // Pointer to Hexapod instance
 Turret*             turret;             // Pointer to Turret instance
 AXS1Sensor*         sensor;             // Pointer to AXS1Sensor instance
@@ -33,7 +32,7 @@ void setup() {
     Serial.println("Dynamixel Controller initialized.");
     
     // Initialize RC100 Remote Controller
-    RCController.begin(RC100_SERIAL);     
+    rcCtrl.begin(RC100_SERIAL);     
     Serial.println("RC100 Remote Controller initialized.");
 
     // Create Hexapod instance
@@ -57,54 +56,59 @@ void setup() {
         Serial.println("AX-S1 not detected!");
     }
 
+    // Initialize Gait Controller
+    //gaitController = new GaitController(hexapod, &dxl); // Create GaitController instance with Hexapod and Dynamixel controller
+    //gaitController->initialize();                        // Initialize gait controller
+    //Serial.println("Gait Controller initialized."); 
+
 }
 
 // Loop function to handle remote controller input and control the robot
 void loop() {
 
-  if (RCController.available())
+  if (rcCtrl.available())
   {
-    RcvData = RCController.readData();
-    Serial.print("RcvData = ");
-    Serial.print(RcvData);  
+    int RCRx = rcCtrl.readData();
+    Serial.print("RCRx = ");
+    Serial.print(RCRx);  
 
-    if (RcvData & RC100_BTN_U) {
+    if (RCRx & RC100_BTN_U) {
         Serial.println("U");
         turret->rotateTurretUp();    // Rotate turret up for testing
         
-    } else if (RcvData & RC100_BTN_D) {
+    } else if (RCRx & RC100_BTN_D) {
         Serial.println("D");
         turret->rotateTurretDown();  // Rotate turret down for testing
 
-    } else if (RcvData & RC100_BTN_L) {
+    } else if (RCRx & RC100_BTN_L) {
         Serial.println("L");
         turret->rotateTurretLeft();  // Rotate turret to the left for testing
 
-    } else if (RcvData & RC100_BTN_R) {
+    } else if (RCRx & RC100_BTN_R) {
         Serial.println("R");
         turret->rotateTurretRight(); // Rotate turret to the right for testing
         
-    } else if (RcvData & RC100_BTN_1) {
+    } else if (RCRx & RC100_BTN_1) {
         Serial.println("1");
         //gaitController->setGait(GAIT_IDLE);
 
-    } else if (RcvData & RC100_BTN_2) {
+    } else if (RCRx & RC100_BTN_2) {
         Serial.println("2");
         //gaitController->setGait(GAIT_WAVE);
 
-    } else if (RcvData & RC100_BTN_3) {
+    } else if (RCRx & RC100_BTN_3) {
         Serial.println("3");
         //gaitController->setGait(GAIT_RIPPLE);
 
-    } else if (RcvData & RC100_BTN_4) {
+    } else if (RCRx & RC100_BTN_4) {
         Serial.println("4");
         //gaitController->setGait(GAIT_TRIPOD);
 
-    } else if (RcvData & RC100_BTN_5) {
+    } else if (RCRx & RC100_BTN_5) {
         Serial.println("5");
         turret->rotateTurretHome();  // Rotate turret back to home position for testing
 
-    } else if (RcvData & RC100_BTN_6) {
+    } else if (RCRx & RC100_BTN_6) {
         Serial.println("6");
 
         hexapod->printLegsStatus();  // Print initial status of all legs
