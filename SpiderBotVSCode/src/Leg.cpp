@@ -12,9 +12,9 @@ void Leg::initialize() {
 
 // Set angles for the leg joints
 void Leg::setJointAngles(float coxaAngle, float femurAngle, float tibiaAngle) {
-  dxlCtrl->setServoPosition(coxa, coxaAngle);      // Set coxa angle
-  dxlCtrl->setServoPosition(femur, femurAngle);    // Set femur angle
-  dxlCtrl->setServoPosition(tibia, tibiaAngle);    // Set tibia angle
+  dxlCtrl->setGoalPosition(coxa, coxaAngle);      // Set coxa angle
+  dxlCtrl->setGoalPosition(femur, femurAngle);    // Set femur angle
+  dxlCtrl->setGoalPosition(tibia, tibiaAngle);    // Set tibia angle
 }
 
 void Leg::printJointAngles() {
