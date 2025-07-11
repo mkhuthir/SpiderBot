@@ -46,8 +46,7 @@ void setup() {
     
     // Initialize Sensor Turret
     turret = new Turret(TURRET_PAN_ID, TURRET_TILT_ID, &dxl); // Create Turret instance with Dynamixel controller
-    turret->initialize();                                               // Initialize turret servos
-    turret->rotateTurretHome();                                         // Rotate turret to home position
+    turret->initialize();                                     // Initialize turret servos
     Serial.println("Sensor Turret initialized.");
 
     // Initialize AX-S1 Sensor

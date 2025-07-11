@@ -11,13 +11,13 @@ class Turret {
     void initialize();                                                      // Initialize the turret servos
 
     void rotateTurret(float panAngle, float tiltAngle);                     // Rotate the turret to specified angles
-    void rotateTurretLeft();                                                // Rotate turret to the left
+    void rotateTurretHome();                                                // Rotate the turret to default position
     void rotateTurretRight();                                               // Rotate turret to the right
+    void rotateTurretLeft();                                                // Rotate turret to the left
     void rotateTurretUp();                                                  // Rotate turret up
     void rotateTurretDown();                                                // Rotate turret down
-    void rotateTurretHome();                                                // Rotate the turret to default position
     void printTurretStatus();                                               // Print current turret angles to Serial 
-        
+            
   private:
     uint8_t pan, tilt;                                                      // Servo IDs for pan, tilt and sensor
     DynamixelController* dxl;                                           // Pointer to the Dynamixel controller instance
