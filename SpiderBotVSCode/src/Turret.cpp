@@ -44,8 +44,8 @@ void Turret::rotateTurretHome() {
 void Turret::printTurretStatus() {
   Serial.println("\nTurret Status:");
   Serial.print("Pan: ");
-  Serial.print(dxl->getGoalPosition(pan));
+  //Serial.print(dxl->getGoalPosition(pan));
   Serial.print(" | Tilt: ");
-  Serial.println(dxl->getGoalPosition(tilt));
+  //Serial.println(dxl->getGoalPosition(tilt));
   Serial.println("---");
 }

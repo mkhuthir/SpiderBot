@@ -32,9 +32,9 @@ void setup() {
     auto found = dxl.scan();
       for (auto id : found) {
         Serial.print("Found ID: "); Serial.println(id);
-        dxl.torqueOn(id);
-    }    
-    
+        dxl.enableTorque(id);
+    }
+
     // Initialize RC100 Remote Controller
     RCController.begin(RC100_SERIAL);       // Initialize RC100 remote controller
     Serial.println("RC100 Remote Controller initialized.");
@@ -72,7 +72,7 @@ void loop() {
 
   if (RCController.available())
   {
-    RcvData = Controller.readData();
+    RcvData = RCController.readData();
     Serial.print("RcvData = ");
     Serial.print(RcvData);  
 

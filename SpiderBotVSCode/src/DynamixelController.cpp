@@ -1,109 +1,55 @@
 #include "DynamixelController.h"
 
-DynamixelController::DynamixelController(const char* device, uint32_t baud)
-  : device_name(device), baudrate(baud) {}
+DynamixelController::DynamixelController() {}
 
-bool DynamixelController::begin()
-{
-  return dxl.begin(device_name, baudrate);
+bool DynamixelController::begin(const char* device_name, uint32_t baudrate) {
+    return dxl.init(device_name, baudrate);
 }
 
-void DynamixelController::initializeServo(uint8_t id) {
-    dxl.torqueOff(id);
-    dxl.setOperatingMode(id, OP_POSITION); // or OP_VELOCITY / OP_PWM if you want
-    dxl.torqueOn(id);
+bool DynamixelController::initializeServo(uint8_t id) {
+    bool result = dxl.itemWrite(id, "Operating_Mode", 3); // 3 = Position
+    return result && torqueOn(id);
 }
 
-void DynamixelController::moveServo(uint8_t id, uint16_t position, uint16_t speed) {
-    dxl.goalVelocity(id, speed);
-    dxl.goalPosition(id, position);
+bool DynamixelController::torqueOn(uint8_t id) {
+    return dxl.torqueOn(id);
 }
 
-void DynamixelController::enableTorque(uint8_t id) {
-    dxl.torqueOn(id);
+bool DynamixelController::setGoalPosition(uint8_t id, uint32_t position) {
+    return dxl.itemWrite(id, "Goal_Position", position);
 }
 
-void DynamixelController::disableTorque(uint8_t id) {
-    dxl.torqueOff(id);
+bool DynamixelController::setGoalVelocity(uint8_t id, uint32_t velocity) {
+    return dxl.itemWrite(id, "Profile_Velocity", velocity);
 }
 
-bool DynamixelController::ping(uint8_t id)
-{
-  uint16_t model_number;
-  return dxl.ping(id, &model_number);
+bool DynamixelController::readPresentPosition(uint8_t id, uint32_t &position) {
+    int32_t pos = 0;
+    bool result = dxl.itemRead(id, "Present_Position", &pos);
+    position = static_cast<uint32_t>(pos);
+    return result;
 }
 
-bool DynamixelController::setGoalPosition(uint8_t id, uint32_t position)
-{
-  return dxl.writeControlTableItem("Goal_Position", id, position);
+bool DynamixelController::syncWritePosition(const std::vector<uint8_t>& ids, const std::vector<uint32_t>& positions) {
+    if (ids.size() != positions.size() || ids.empty()) return false;
+    std::vector<int32_t> pos32(positions.begin(), positions.end());
+    uint8_t index = dxl.getIndex(ids[0], "Goal_Position");
+    return dxl.syncWrite(index, const_cast<uint8_t*>(ids.data()), ids.size(), pos32.data(), 1);
 }
 
-bool DynamixelController::setGoalVelocity(uint8_t id, uint32_t velocity)
-{
-  return dxl.writeControlTableItem("Profile_Velocity", id, velocity);
-}
-
-bool DynamixelController::readPresentPosition(uint8_t id, uint32_t &position)
-{
-  return dxl.readControlTableItem("Present_Position", id, &position);
-}
-
-std::vector<uint8_t> DynamixelController::scan(uint8_t start_id, uint8_t end_id)
-{
-  std::vector<uint8_t> found_ids;
-  for (uint8_t id = start_id; id <= end_id; ++id)
-  {
-    uint16_t model_number;
-    if (dxl.ping(id, &model_number))
-    {
-      found_ids.push_back(id);
+bool DynamixelController::bulkReadPositions(const std::vector<uint8_t>& ids, std::vector<uint32_t>& positions) {
+    positions.clear();
+    for (size_t i = 0; i < ids.size(); ++i) {
+        int32_t pos = 0;
+        if (!dxl.itemRead(ids[i], "Present_Position", &pos)) {
+            positions.push_back(0);
+            return false;
+        }
+        positions.push_back(static_cast<uint32_t>(pos));
     }
-  }
-  return found_ids;
+    return true;
 }
 
-// Sync Write to multiple servos
-bool DynamixelController::syncWritePosition(const std::vector<uint8_t>& ids, const std::vector<uint32_t>& positions)
-{
-  if (ids.size() != positions.size()) return false;
-  if (ids.empty()) return false;
-
-  const char* item_name = "Goal_Position";
-  const uint16_t addr = dxl.getControlTableItemAddress(item_name, ids[0]);
-  const uint16_t length = dxl.getControlTableItemSize(item_name, ids[0]);
-
-  if (addr == 0 || length == 0) return false;
-
-  uint8_t param[ids.size() * length];
-  for (size_t i = 0; i < ids.size(); ++i)
-  {
-    for (uint16_t b = 0; b < length; ++b)
-    {
-      param[i * length + b] = (positions[i] >> (8 * b)) & 0xFF;
-    }
-  }
-
-  return dxl.syncWrite(addr, length, ids.data(), ids.size(), param, ids.size() * length);
-}
-
-// Bulk Read Present_Position
-bool DynamixelController::bulkReadPositions(const std::vector<uint8_t>& ids, std::vector<uint32_t>& positions)
-{
-  positions.clear();
-  if (ids.empty()) return false;
-
-  positions.reserve(ids.size());
-  for (uint8_t id : ids)
-  {
-    uint32_t pos;
-    if (dxl.readControlTableItem("Present_Position", id, &pos))
-    {
-      positions.push_back(pos);
-    }
-    else
-    {
-      positions.push_back(0xFFFFFFFF); // Error value
-    }
-  }
-  return true;
+DynamixelWorkbench* DynamixelController::getWorkbench() {
+    return &dxl;
 }
