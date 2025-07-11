@@ -10,14 +10,14 @@
 #include "AXS1Sensor.h"                 // Include AXS1Sensor class for managing the AX-S1 sensor
 #include "GaitController.h"             // Include GaitController class for managing the gait of the hexapod
 
+DynamixelController dxl(DXL_SERIAL, DXL_BAUD_RATE);           // Initialize DynamixelWorkbench with the specified serial port and baud rate
+RC100               RCController;                       // RC100 remote controller instance
+int                 RcvData = 0;                        // Variable to store received data from the remote controller
 
-RC100           RCController;       // RC100 remote controller instance
-int             RcvData = 0;        // Variable to store received data from the remote controller
-
-Hexapod*        hexapod;            // Pointer to Hexapod instance
-Turret*         turret;             // Pointer to Turret instance
-AXS1Sensor*     sensor;             // Pointer to AXS1Sensor instance
-GaitController* gaitController;     // Pointer to GaitController instance
+Hexapod*            hexapod;                            // Pointer to Hexapod instance
+Turret*             turret;                             // Pointer to Turret instance
+AXS1Sensor*         sensor;                             // Pointer to AXS1Sensor instance
+GaitController*    gaitController;                     // Pointer to GaitController instance
 
 void setup() {
 
@@ -27,7 +27,14 @@ void setup() {
     Serial.println("SpiderBot Starting Setup...");
 
     // Initialize Dynamixel Controller
+    dxl.begin();
 
+    auto found = dxl.scan();
+      for (auto id : found) {
+        Serial.print("Found ID: "); Serial.println(id);
+        dxl.torqueOn(id);
+    }    
+    
     // Initialize RC100 Remote Controller
     RCController.begin(RC100_SERIAL);       // Initialize RC100 remote controller
     Serial.println("RC100 Remote Controller initialized.");
@@ -49,7 +56,6 @@ void setup() {
     Serial.println("Sensor Turret initialized.");
 
     // Initialize AX-S1 Sensor
-    dxl.begin(DXL_SERIAL, DXL_BAUD_RATE);           // Initialize DynamixelWorkbench with the specified serial port and baud rate
     sensor = new AXS1Sensor(&dxl, AX_S1_SENSOR_ID); // Create AX-S1 sensor instance with Dynamixel controller
     if (sensor->ping()) {
         Serial.println("AX-S1 detected!");
