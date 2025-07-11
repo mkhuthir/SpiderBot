@@ -4,7 +4,6 @@
 #include "DynamixelController.h"
 #include "Config.h"
 
-
 class Leg {
   public:
     Leg(uint8_t coxaID, uint8_t femurID, uint8_t tibiaID, DynamixelController* controller); // Constructor
