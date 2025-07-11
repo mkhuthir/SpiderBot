@@ -15,6 +15,7 @@ class DynamixelController
     DynamixelController(const char* device, uint32_t baud);
 
     bool begin();
+    void initializeServo(uint8_t id);
     bool ping(uint8_t id);
     bool torqueOn(uint8_t id);
     bool torqueOff(uint8_t id);
