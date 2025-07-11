@@ -1,4 +1,4 @@
-#ifdef TURRET_H
+#ifndef TURRET_H
 #define TURRET_H
 
 #include "DynamixelController.h"

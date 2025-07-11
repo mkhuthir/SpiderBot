@@ -1,4 +1,4 @@
-#ifdef AXS1SENSOR_H
+#ifndef AXS1SENSOR_H
 #define AXS1SENSOR_H
 
 #include <DynamixelWorkbench.h>

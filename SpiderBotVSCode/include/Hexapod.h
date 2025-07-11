@@ -1,4 +1,4 @@
-#ifdef HEXAPOD_H
+#ifndef HEXAPOD_H
 #define HEXAPOD_H
 
 #include "Leg.h"

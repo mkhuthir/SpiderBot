@@ -1,4 +1,4 @@
-#ifdef GaitController_h
+#ifndef GaitController_h
 #define GaitController_h
 
 #include <Arduino.h>

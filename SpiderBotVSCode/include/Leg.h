@@ -1,4 +1,4 @@
-#ifdef LEG_H
+#ifndef LEG_H
 #define LEG_H
 
 #include "DynamixelController.h"
