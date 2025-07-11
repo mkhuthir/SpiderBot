@@ -128,5 +128,9 @@ void loop() {
   }
 
     //gaitController->update();
-    
+
+    // Move all legs to neutral
+    //std::vector<uint8_t> ids = {1,2,3,4,5,6};
+    //std::vector<uint32_t> poses = {512,512,512,512,512,512};
+    //dxl.syncWritePosition(ids, poses);
 }
