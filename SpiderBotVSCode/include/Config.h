@@ -5,58 +5,10 @@
 // SERIAL PORTS
 // ------------------------
 
-// When using DynamixelShield
-#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_MEGA2560)
-  #include <SoftwareSerial.h>
-  SoftwareSerial soft_serial(7, 8);
-  #define DXL_SERIAL   Serial
-  #define RC100_SERIAL Serial2
-  #define DEBUG_SERIAL soft_serial
-  const int DXL_DIR_PIN = 2;
-
-// When using DynamixelShield
-#elif defined(ARDUINO_SAM_DUE)
-  #define DXL_SERIAL   Serial
-  #define RC100_SERIAL Serial2
-  #define DEBUG_SERIAL SerialUSB
-  const int DXL_DIR_PIN = 2;
-
-// When using DynamixelShield
-#elif defined(ARDUINO_SAM_ZERO)
-  #define DXL_SERIAL   Serial1
-  #define RC100_SERIAL Serial2
-  #define DEBUG_SERIAL SerialUSB
-  const int DXL_DIR_PIN = 2;
-
-// When using official ROBOTIS board with DXL circuit.
-#elif defined(ARDUINO_OpenCM904)
-  #define DXL_SERIAL   Serial3
-  #define RC100_SERIAL Serial1
-  #define DEBUG_SERIAL Serial
-  const int DXL_DIR_PIN = 22; //OpenCM9.04 EXP Board's DIR PIN. (28 for the DXL port on the OpenCM 9.04 board)
-
-// When using official ROBOTIS OpenCR board with DXL circuit.
-#elif defined(ARDUINO_OpenCR)
   #define DEBUG_SERIAL Serial
   #define RC100_SERIAL Serial1
-  #define DXL_SERIAL   Serial3
-  const int DXL_DIR_PIN = 84;
+  #define DXL_SERIAL   "1"
 
-// When using OpenRB-150
-#elif defined(ARDUINO_OpenRB)
-  #define DXL_SERIAL   Serial1
-  #define RC100_SERIAL Serial2
-  #define DEBUG_SERIAL Serial
-  const int DXL_DIR_PIN = -1;  //OpenRB does not require the DIR control pin.
-
-// Other boards when using DynamixelShield
-#else
-  #define DXL_SERIAL   Serial1
-  #define RC100_SERIAL Serial2
-  #define DEBUG_SERIAL Serial
-  const int DXL_DIR_PIN = 2;
-
-#endif
 
 // ------------------------
 // SERIAL BAUD RATES
