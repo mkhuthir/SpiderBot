@@ -1,26 +1,38 @@
-#ifndef AXS1SENSOR_H
-#define AXS1SENSOR_H
+#ifndef AXS1_SENSOR_H
+#define AXS1_SENSOR_H
 
 #include <DynamixelWorkbench.h>
-#include "Config.h"
 
-// AXS1Sensor class provides an interface to the AXS-1 sensor module
 class AXS1Sensor {
-private:
-    DynamixelWorkbench* dxl;    // Pointer to the DynamixelWorkbench for communication
-    uint8_t             id;     // ID of the AXS-1 sensor
-
 public:
-    // Constructor: Initializes the sensor with a DynamixelWorkbench pointer and optional sensor ID (default 100)
-    AXS1Sensor(DynamixelWorkbench* workbench, uint8_t sensor_id = AX_S1_SENSOR_ID);
+    AXS1Sensor(DynamixelWorkbench* workbench, uint8_t sensor_id);
 
-   
-    bool    ping();             // Ping the sensor to check if it is connected and responding
-    int     readTemperature();  // Read the current temperature from the sensor
-    int     readLuminosity();   // Read the current luminosity (light level) from the sensor
-    int     readSoundLevel();   // Read the current sound level from the sensor
-    bool    ledOn();            // Turn the sensor's LED on
-    bool    ledOff();           // Turn the sensor's LED off
+    bool ping();
+
+    bool ledOn();
+    bool ledOff();
+    bool setBuzzer(uint8_t note, uint8_t duration);
+
+    int getIRLeft();
+    int getIRCenter();
+    int getIRRight();
+
+    int getLightLeft();
+    int getLightCenter();
+    int getLightRight();
+
+    int getSoundLevel();
+    int getSoundCount();
+
+    float getVoltage();
+    float getTemperature();
+
+private:
+    DynamixelWorkbench* dxl;
+    uint8_t id;
+
+    bool readItem(const char* item_name, int32_t* data);
+    bool writeItem(const char* item_name, int32_t data);
 };
 
-#endif  // AXS1SENSOR_H
+#endif // AXS1_SENSOR_H

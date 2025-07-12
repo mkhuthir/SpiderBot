@@ -113,10 +113,23 @@ void loop() {
         hexapod->printLegsStatus();  // Print initial status of all legs
         turret->printTurretStatus(); // Print initial status of turret
 
-        Serial.print("Temp: "); Serial.println(sensor->readTemperature());
-        Serial.print("Light: "); Serial.println(sensor->readLuminosity());
-        Serial.print("Sound: "); Serial.println(sensor->readSoundLevel());
+        Serial.print("Temp: "); Serial.println(sensor->getTemperature());
+        Serial.print("Voltage: "); Serial.println(sensor->getVoltage());
         
+        Serial.print("Sound: "); Serial.println(sensor->getSoundLevel());
+        Serial.print("Sound Count: "); Serial.println(sensor->getSoundCount());
+        
+        Serial.print("Light Right: "); Serial.println(sensor->getLightRight());
+        Serial.print("Light Center: "); Serial.println(sensor->getLightCenter());
+        Serial.print("Light Left: "); Serial.println(sensor->getLightLeft());   
+        
+        Serial.print("IR Right: "); Serial.println(sensor->getIRRight());   
+        Serial.print("IR Center: "); Serial.println(sensor->getIRCenter());
+        Serial.print("IR Left: "); Serial.println(sensor->getIRLeft());
+        
+
+        Serial.println("Sensor data read successfully.");
+
         // Bulk read
         Serial.println("Bulck reading postions");
         std::vector<uint32_t> positions;
