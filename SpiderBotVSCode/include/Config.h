@@ -1,14 +1,15 @@
 #ifndef CONFIG_H
 #define CONFIG_H
+
 // Config.h - Configuration file for SpiderBot project
 
 // ------------------------
 // SERIAL PORTS
 // ------------------------
 
-  #define DEBUG_SERIAL Serial
-  #define RC100_SERIAL Serial1
-  #define DXL_SERIAL   "1"
+#define DEBUG_SERIAL Serial
+#define RC100_SERIAL Serial1
+#define DXL_SERIAL   "1"
 
 
 // ------------------------

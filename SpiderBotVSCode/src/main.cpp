@@ -2,9 +2,7 @@
 
 #include <Arduino.h>                    // Include Arduino core library
 #include "Config.h"                     // Include configuration header for serial ports and other settings     
-#include "DynamixelController.h"        // Include Dynamixel controller library
-#include "RC100.h"                      // Include RC100 remote controller library  
-#include "Leg.h"                        // Include Leg class for hexapod legs
+#include "RC100.h"                      // Include Robotis RC100 remote controller library  
 #include "Hexapod.h"                    // Include Hexapod class for managing the hexapod robot
 #include "Turret.h"                     // Include Turret class for managing the sensor turret
 #include "AXS1Sensor.h"                 // Include AXS1Sensor class for managing the AX-S1 sensor
@@ -27,13 +25,13 @@ void setup() {
     while (!Serial); // Wait for Serial to be ready
     Serial.println("SpiderBot Starting Setup...");
 
+    // Initialize Robotis RC100 Remote Controller
+    rcCtrl.begin(RC100_SERIAL);     
+    Serial.println("Robotis RC100 Remote Controller initialized.");
+
     // Initialize Dynamixel Controller
     dxl.begin(DXL_SERIAL, DXL_BAUD_RATE); 
     Serial.println("Dynamixel Controller initialized.");
-    
-    // Initialize RC100 Remote Controller
-    rcCtrl.begin(RC100_SERIAL);     
-    Serial.println("RC100 Remote Controller initialized.");
 
     // Create Hexapod instance
     hexapod = new Hexapod(&dxl);                                    // Create Hexapod instance with Dynamixel controller
