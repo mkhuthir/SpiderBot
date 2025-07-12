@@ -2,8 +2,6 @@
 #define HEXAPOD_H
 
 #include "Leg.h"
-#include "Config.h"
-
 
 class Hexapod {
   public:
