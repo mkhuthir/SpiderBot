@@ -60,11 +60,11 @@ namespace IK {
         cos_b = fminf(fmaxf(cos_b, -1.0f), 1.0f);                                           // Clamp for safety
         float angle_b = acosf(cos_b);
         float knee_sign = 1.0f;                                                             // Choose knee sign: knee down (default, positive sign)
-        femur_angle_rad = angle_a + knee_sign * angle_b;                                    // Femur angle   
+        float femur_angle_rad = angle_a + knee_sign * angle_b;                              // Femur angle   
         float cos_c = (powf(FEMUR_LENGTH, 2) + powf(TIBIA_LENGTH, 2) - powf(L, 2))          // Law of cosines for tibia angle
                     / (2.0f * FEMUR_LENGTH * TIBIA_LENGTH);
         cos_c = fminf(fmaxf(cos_c, -1.0f), 1.0f);                                           // Clamp for safety
-        tibia_angle_rad = knee_sign * (M_PI - acosf(cos_c));                                // Tibia angle  
+        float tibia_angle_rad = knee_sign * (M_PI - acosf(cos_c));                          // Tibia angle  
 
         // Radians to degrees, wrap, and convert to ticks
         float femur_angle_deg = IK::wrap360(IK::rad2Deg(femur_angle_rad));
