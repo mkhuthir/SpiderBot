@@ -44,10 +44,10 @@ namespace IK {
         float coxa_angle_rad = atan2f(tip_local_y, tip_local_x);
         float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad) - baseR);
         if (!deg2Tick(coxa_angle_deg,  positions[0])) return false;
-       
 
+        positions[1] = 512; // Placeholder for femur
+        positions[2] = 512; // Placeholder for tibia
 
-   
         return true;
     }
 
