@@ -42,11 +42,45 @@ namespace IK {
 
         // Coxa yaw (rotation in XY plane)
         float coxa_angle_rad = atan2f(tip_local_y, tip_local_x);
-        float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad) - baseR);
-        if (!deg2Tick(coxa_angle_deg,  positions[0])) return false;
 
-        positions[1] = 512; // Placeholder for femur
-        positions[2] = 512; // Placeholder for tibia
+        float coxa_angle_deg  = IK::wrap360(IK::rad2Deg(coxa_angle_rad) - baseR);
+        LOG_INF("Coxa Angle: " + String(coxa_angle_deg) + "°");
+
+        if (!IK::deg2Tick(coxa_angle_deg,  positions[0])) return false;
+        LOG_INF("Coxa Tick: " + String(positions[0]));
+
+        // Subtract coxa length to get femur base position
+        float x = tip_local_x - COXA_LENGTH;
+        float z = tip_local_z;
+
+        // Distance from femur base to tip
+        float D = sqrtf(powf(x, 2) + powf(z, 2));
+
+        // Check reachability
+        //if (D > (FEMUR_LENGTH + TIBIA_LENGTH) || D < fabs(FEMUR_LENGTH - TIBIA_LENGTH)) return false;
+
+        // Law of cosines for tibia angle
+        float cos_tibia = (powf(FEMUR_LENGTH, 2) + powf(TIBIA_LENGTH, 2) - powf(D, 2)) / (2 * FEMUR_LENGTH * TIBIA_LENGTH);
+        float tibia_angle_rad = acosf(cos_tibia);
+
+        // Law of cosines for femur angle
+        float cos_femur = (powf(FEMUR_LENGTH, 2) + powf(D, 2) - powf(TIBIA_LENGTH, 2)) / (2 * FEMUR_LENGTH * D);
+        float femur_angle_offset = acosf(cos_femur);
+        float femur_angle_rad = atan2f(z, x) - femur_angle_offset;
+        
+        // Convert to degrees
+        float femur_angle_deg = IK::wrap360(IK::rad2Deg(femur_angle_rad));
+        LOG_INF("Femur Angle: " + String(femur_angle_deg) + "°");
+
+        float tibia_angle_deg = IK::wrap360(IK::rad2Deg(tibia_angle_rad));
+        LOG_INF("Tibia Angle: " + String(tibia_angle_deg) + "°");
+
+        // Convert to servo ticks
+        if (!IK::deg2Tick(femur_angle_deg, positions[1])) return false;
+        LOG_INF("Femur Tick: " + String(positions[1]));
+
+        if (!IK::deg2Tick(tibia_angle_deg, positions[2])) return false;
+        LOG_INF("Tibia Tick: " + String(positions[2]));
 
         return true;
     }

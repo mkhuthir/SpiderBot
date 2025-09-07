@@ -1,18 +1,18 @@
 #ifndef KINEMATICS_H
 #define KINEMATICS_H
 
-    #define COXA_LENGTH       float(52)                         // Length of the coxa segment in mm
+    #define COXA_LENGTH      float(52.0)                         // Length of the coxa segment in mm
 
-    #define FEMUR_LENGTH      float(82)                         // Length of the femur segment in mm
-    #define FEMUR_H_POS       float(180)                        // Femur at horizontal angle in degrees
-    #define FEMUR_UP_DIR      float(1.0)                        // Femur up direction CCW = 1.0 CW = -1.0
+    #define FEMUR_LENGTH     float(82.0)                         // Length of the femur segment in mm
+    #define FEMUR_H_POS      float(180.0)                        // Femur at horizontal angle in degrees
+    #define FEMUR_UP_DIR     float(1.0)                        // Femur up direction CCW = 1.0 CW = -1.0
     
-    #define TIBIA_LENGTH      float(142)                        // Length of the tibia segment in mm
-    #define TIBIA_H_POS       float(180)                        // Tibia at horizontal angle in degrees
-    #define TIBIA_UP_DIR      float(-1.0)                       // Tibia up direction CCW = 1.0 CW = -1.0
+    #define TIBIA_LENGTH     float(142.0)                        // Length of the tibia segment in mm
+    #define TIBIA_H_POS      float(180.0)                        // Tibia at horizontal angle in degrees
+    #define TIBIA_UP_DIR     float(-1.0)                       // Tibia up direction CCW = 1.0 CW = -1.0
 
-    #define SERVO_MIN_DEG    float(30)                          // start angle
-    #define SERVO_MAX_DEG    float(330)                         // end angle
+    #define SERVO_MIN_DEG    float(30.0)                          // start angle
+    #define SERVO_MAX_DEG    float(330.0)                         // end angle
     #define SERVO_SPAN_DEG   (SERVO_MAX_DEG - SERVO_MIN_DEG)    // 300 degrees span (30-300 CCW)
     #define SERVO_MIN_TICK   uint16_t(0)                        // min ticks 0 = 30 degrees
     #define SERVO_MAX_TICK   uint16_t(1023)                     // max ticks 1023 = 300 degrees
