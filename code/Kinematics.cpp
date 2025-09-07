@@ -43,37 +43,10 @@ namespace IK {
         // Coxa yaw (rotation in XY plane)
         float coxa_angle_rad = atan2f(tip_local_y, tip_local_x);
         float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad) - baseR);
-        LOG_INF("X:" + String(tip_local_x) + " Y:" + String(tip_local_y) + " COXA angle: " + String(coxa_angle_deg));
-
         if (!deg2Tick(coxa_angle_deg,  positions[0])) return false;
-        LOG_INF("COXA tick: " + String(positions[0]));
+       
 
-        
-        // Planar reduction
-        float Xp = sqrtf(powf(tip_local_x, 2) + powf(tip_local_y, 2)) - COXA_LENGTH;
-        float Zp = tip_local_z;
-        float d2 = powf(Xp, 2) + powf(Zp, 2);
-        float d  = sqrtf(d2);
-        float lenSum = FEMUR_LENGTH + TIBIA_LENGTH;
-        float lenDiff = fabsf(FEMUR_LENGTH - TIBIA_LENGTH);
 
-        // Check if the point is reachable
-        if (!(d >= lenDiff - 1e-5f && d <= lenSum + 1e-5f)) return false;
-
-        float D = (d2 - powf(FEMUR_LENGTH, 2) - powf(TIBIA_LENGTH, 2)) / (2.0f * FEMUR_LENGTH * TIBIA_LENGTH);
-        // Clamp D to the range [-1, 1]
-        if (D < -1.0f) D = -1.0f;
-        if (D >  1.0f) D =  1.0f;
-
-        float sin_knee = sqrtf(fmaxf(0.0f, 1.0f - powf(D, 2)));
-        float tibia_angle_rad = atan2f(sin_knee, D);
-        float femur_angle_rad = atan2f(Zp, Xp) - atan2f(TIBIA_LENGTH*sinf(tibia_angle_rad), FEMUR_LENGTH + TIBIA_LENGTH*cosf(tibia_angle_rad));
-
-        float femur_angle_deg = wrap360((FEMUR_UP_DIR) * rad2Deg(femur_angle_rad) + FEMUR_H_POS);
-        float tibia_angle_deg = wrap360((-TIBIA_UP_DIR) * rad2Deg(tibia_angle_rad) + TIBIA_H_POS);
-        
-        if (!deg2Tick(femur_angle_deg, positions[1])) return false;
-        if (!deg2Tick(tibia_angle_deg, positions[2])) return false;
    
         return true;
     }
