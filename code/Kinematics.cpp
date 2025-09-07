@@ -4,9 +4,9 @@
 
 namespace IK {
 
-    // Wrap degrees from [180, -180] to [0, 360]
+    // 180° rotation and mirror.
     float wrap360(float deg) {
-        return fmodf(deg + 360.0f, 360.0f);
+        return fmodf((180.0f - deg), 360.0f);
     }
 
     bool deg2Tick(float deg, uint16_t &tick) {
@@ -41,9 +41,12 @@ namespace IK {
     bool getIKLocal(float tip_local_x, float tip_local_y, float tip_local_z, float baseR, uint16_t* positions) {
 
         // Coxa yaw (rotation in XY plane)
-        float coxa_angle_rad = atan2f(tip_local_x, tip_local_y);
-        float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad));
+        float coxa_angle_rad = atan2f(tip_local_y, tip_local_x);
+        float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad) - baseR);
+        LOG_INF("X:" + String(tip_local_x) + " Y:" + String(tip_local_y) + " COXA angle: " + String(coxa_angle_deg));
+
         if (!deg2Tick(coxa_angle_deg,  positions[0])) return false;
+        LOG_INF("COXA tick: " + String(positions[0]));
 
         
         // Planar reduction
