@@ -42,15 +42,13 @@ namespace IK {
 
         // Coxa yaw (rotation in XY plane)
         float coxa_angle_rad = atan2f(tip_local_x, tip_local_y);
-        float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad)  - baseR);
+        float coxa_angle_deg  = wrap360(rad2Deg(coxa_angle_rad));
         if (!deg2Tick(coxa_angle_deg,  positions[0])) return false;
 
-        /*
+        
         // Planar reduction
-        float r  = sqrtf(powf(tip_local_x, 2) + powf(tip_local_y, 2));
-        float Xp = r - COXA_LENGTH;
+        float Xp = sqrtf(powf(tip_local_x, 2) + powf(tip_local_y, 2)) - COXA_LENGTH;
         float Zp = tip_local_z;
-
         float d2 = powf(Xp, 2) + powf(Zp, 2);
         float d  = sqrtf(d2);
         float lenSum = FEMUR_LENGTH + TIBIA_LENGTH;
@@ -73,11 +71,7 @@ namespace IK {
         
         if (!deg2Tick(femur_angle_deg, positions[1])) return false;
         if (!deg2Tick(tibia_angle_deg, positions[2])) return false;
-        */
-
-        positions[1] = 512;
-        positions[2] = 512;
-
+   
         return true;
     }
 
