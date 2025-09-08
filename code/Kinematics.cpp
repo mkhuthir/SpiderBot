@@ -57,8 +57,8 @@ namespace IK {
                     / (2.0f * FEMUR_LENGTH * L);  
         cos_b = fminf(fmaxf(cos_b, -1.0f), 1.0f);                                           // Clamp for safety
         float angle_b = acosf(cos_b);                                                       // Angle between femur and line from coxa to tip
-        float knee_sign = 1.0f;                                                             // Choose knee sign: knee down (default, positive sign)
-        float femur_angle_rad = angle_a + knee_sign * angle_b;                              // Femur angle   
+        float knee_sign = -1.0f;                                                            // Choose knee sign (default, knee up > negative sign)
+        float femur_angle_rad = angle_a + knee_sign * angle_b;                              // Femur angle
         float cos_c = (powf(FEMUR_LENGTH, 2) + powf(TIBIA_LENGTH, 2) - powf(L, 2))          // Law of cosines for tibia angle
                     / (2.0f * FEMUR_LENGTH * TIBIA_LENGTH);
         cos_c = fminf(fmaxf(cos_c, -1.0f), 1.0f);                                           // Clamp for safety
@@ -73,10 +73,6 @@ namespace IK {
             LOG_ERR("Tibia angle out of range: " + String(tibia_angle_deg) + "°");
             return false;
         }
-
-        LOG_INF("Coxa Angle : " + String( coxa_angle_deg) + "° " + String(positions[0] + " Ticks"));
-        LOG_INF("Femur Angle: " + String(femur_angle_deg) + "° " + String(positions[1] + " Ticks"));
-        LOG_INF("Tibia Angle: " + String(tibia_angle_deg) + "° " + String(positions[2] + " Ticks"));
 
         return true;
     }
