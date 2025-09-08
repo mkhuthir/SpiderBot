@@ -160,91 +160,6 @@ namespace IK {
         if (cmd == "ks") {
             printStatus();
             return true;
-        
-        } else if (cmd == "lgikl") {
-        int count = 0, i = 0; float local_x = 0, local_y = 0, local_z = 0;
-        count = sscanf(args.c_str(), "%d %f %f %f", &i, &local_x, &local_y, &local_z);
-        if (count == 4) {
-            uint16_t positions[LEG_SERVOS];
-            if (IK::getIKLocal(local_x, local_y, local_z, baseR, positions)) {
-                LOG_INF("Leg " + String(index) + " IK Local Positions: Coxa: " + String(positions[Coxa]) + ", Femur: " + String(positions[Femur]) + ", Tibia: " + String(positions[Tibia]));
-            } else {
-                LOG_ERR("Failed to compute IK Local.");
-            }
-        } else {
-            LOG_ERR("Invalid parameters for lgikl. Usage: lgikl n x y z");
-        }
-        return true;
-
-        } else if (cmd == "kgikg") {
-            int count = 0, i = 0; float global_x = 0, global_y = 0, global_z = 0;
-            count = sscanf(args.c_str(), "%d %f %f %f", &i, &global_x, &global_y, &global_z);
-            if (count == 4) {
-                uint16_t positions[LEG_SERVOS];
-                if (IK::getIKGlobal(global_x, global_y, global_z, baseX, baseY, baseZ, baseR, positions)) {
-                    LOG_INF("Leg " + String(index) + " IK Global Positions: Coxa: " + String(positions[Coxa]) + ", Femur: " + String(positions[Femur]) + ", Tibia: " + String(positions[Tibia]));
-                } else {
-                    LOG_ERR("Failed to compute IK Global.");
-                }
-            } else {
-                LOG_ERR("Invalid parameters for lgikg. Usage: lgikg n x y z");
-            }
-            return true;
-
-        } else if (cmd == "kgfkl") {
-            int count = 0, i = 0; uint16_t coxa = 0, femur = 0, tibia = 0;
-            float local_x = 0, local_y = 0, local_z = 0;
-            count = sscanf(args.c_str(), "%d %hu %hu %hu", &i, &coxa, &femur, &tibia);
-            if (count == 4) {
-                if (IK::getFKLocal(coxa, femur, tibia, baseR,&local_x, &local_y, &local_z)) {
-                    LOG_INF("Leg " + String(index) + " FK Local Position: X: " + String(local_x) + ", Y: " + String(local_y) + ", Z: " + String(local_z));
-                } else {
-                    LOG_ERR("Failed to compute FK Local.");
-                }
-            } else {
-                LOG_ERR("Invalid parameters for lgfkl. Usage: lgfkl n c f t");
-            }
-            return true;
-
-        } else if (cmd == "kgfkg") {
-            int count = 0, i = 0; uint16_t coxa = 0, femur = 0, tibia = 0;
-            float global_x = 0, global_y = 0, global_z = 0;
-            count = sscanf(args.c_str(), "%d %hu %hu %hu", &i, &coxa, &femur, &tibia);
-            if (count == 4) {
-                if (IK::getFKGlobal(coxa, femur, tibia, baseX, baseY, baseZ, baseR, &global_x, &global_y, &global_z)) {
-                    LOG_INF("Leg " + String(index) + " FK Global Position: X: " + String(global_x) + ", Y: " + String(global_y) + ", Z: " + String(global_z));
-                } else {
-                    LOG_ERR("Failed to compute FK Global.");
-                }
-            } else {
-                LOG_ERR("Invalid parameters for lgfkg. Usage: lgfkg n c f t");
-            }
-            return true;
-
-        } else if (cmd == "kltg") {
-            int count = 0, i = 0; float local_x = 0, local_y = 0, local_z = 0;
-            float global_x = 0, global_y = 0, global_z = 0;
-            count = sscanf(args.c_str(), "%d %f %f %f", &i, &local_x, &local_y, &local_z);
-            if (count == 4) {
-                IK::local2Global(local_x, local_y, local_z, baseX, baseY, baseZ, &global_x, &global_y, &global_z);
-                LOG_INF("Leg " + String(index) + " Local to Global: X: " + String(global_x) + ", Y: " + String(global_y) + ", Z: " + String(global_z));
-            } else {
-                LOG_ERR("Invalid parameters for lltg. Usage: lltg n x y z");
-            }
-            return true;
-            
-        } else if (cmd == "kgtl") {
-            int count = 0, i = 0; float global_x = 0, global_y = 0, global_z = 0;
-            float local_x = 0, local_y = 0, local_z = 0;
-            count = sscanf(args.c_str(), "%d %f %f %f", &i, &global_x, &global_y, &global_z);
-            if (count == 4) {
-                IK::global2Local(global_x, global_y, global_z, baseX, baseY, baseZ, &local_x, &local_y, &local_z);
-                LOG_INF("Leg " + String(index) + " Global to Local: X: " + String(local_x) + ", Y: " + String(local_y) + ", Z: " + String(local_z));
-            } else {
-                LOG_ERR("Invalid parameters for lgtl. Usage: lgtl n x y z");
-            }
-            return true;
-    
         } else if (cmd == "k?") {
             printConsoleHelp();
             return true;
@@ -256,17 +171,7 @@ namespace IK {
     bool printConsoleHelp() {
         PRINTLN("Kinematics Commands:\n\r");
         PRINTLN("  ks          - Print kinematics system status");
-        PRINTLN("");
-        PRINTLN("  kgikl n x y z      - Compute IK in local coords (relative to leg base)");
-        PRINTLN("  kgikg n x y z      - Compute IK in global coords (relative to body center)");
-        PRINTLN("");
-        PRINTLN("  kgfkl n c f t      - Compute FK in local coords (relative to leg base)");
-        PRINTLN("  kgfkg n c f t      - Compute FK in global coords (relative to body center)");
-        PRINTLN("");
-        PRINTLN("  kltg n x y z       - Compute global coordinates from local coordinates");
-        PRINTLN("  kgtl n x y z       - Compute local coordinates from global coordinates");
-        PRINTLN("");
-        PRINTLN("  k?                 - Show this help");
+        PRINTLN("  k?          - Print kinematics help information");
         PRINTLN("");
         return true;
     }
