@@ -103,6 +103,7 @@ void Console::processInput(const String& input) {
         !mc->runConsoleCommands(mainCmd, args) &&
         !driver->runConsoleCommands(mainCmd, args) &&
         !servo->runConsoleCommands(mainCmd, args) &&
+        !IK::runConsoleCommands(mainCmd, args) &&
         !hexapod->runConsoleCommands(mainCmd, args) &&
         !runLegCommand(mainCmd, args) &&                    
         !turret->runConsoleCommands(mainCmd, args) &&
@@ -504,6 +505,7 @@ bool Console::printAllHelp() {
     if (!mc->printConsoleHelp()) return false;
     if (!driver->printConsoleHelp()) return false;
     if (!servo->printConsoleHelp()) return false;
+    if (!IK::printConsoleHelp()) return false;
     if (!hexapod->printConsoleHelp()) return false;
     if (!hexapod->legs[0].printConsoleHelp()) return false;
     if (!turret->printConsoleHelp()) return false;
@@ -526,6 +528,7 @@ bool Console::printConsoleHelp() {
     PRINTLN("");
     PRINTLN("  d?               - Show driver commands");
     PRINTLN("  s?               - Show servo commands");
+    PRINTLN("  k?               - Show kinematics commands");
     PRINTLN("  h?               - Show hexapod commands");
     PRINTLN("  l?               - Show leg commands");
     PRINTLN("  a?               - Show AX-S1 Sensor commands");

@@ -7,6 +7,7 @@
     #include "Debug.h"              // Include Log class for logging
     #include "Driver.h"             // Include Driver class for managing Dynamixel servos
     #include "Servo.h"              // Include Servo class for managing servo motors
+    #include "Kinematics.h"        // Include Kinematics class for kinematic calculations
     #include "Microcontroller.h"    // Include Microcontroller class for managing the microcontroller
     #include "Hexapod.h"            // Include Hexapod class for managing the hexapod robot
     #include "BodyPose.h"           // Include BodyPose class for managing body pose
