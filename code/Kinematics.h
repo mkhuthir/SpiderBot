@@ -1,15 +1,16 @@
 #ifndef KINEMATICS_H
 #define KINEMATICS_H
 
-    #define COXA_LENGTH      float(52.0)                        // Length of the coxa segment in mm
-    #define FEMUR_LENGTH     float(82.0)                        // Length of the femur segment in mm
-    #define TIBIA_LENGTH     float(142.0)                       // Length of the tibia segment in mm
+    #define COXA_LENGTH     float(52.0)                        // Length of the coxa segment in mm
+    #define FEMUR_LENGTH    float(82.0)                        // Length of the femur segment in mm
+    #define TIBIA_LENGTH    float(142.0)                       // Length of the tibia segment in mm
+    #define KNEE_DIR        float(-1.0)                        // Choose knee direction (default, knee up > negative sign)
 
-    #define SERVO_MIN_DEG    float(30.0)                        // start angle
-    #define SERVO_MAX_DEG    float(330.0)                       // end angle
-    #define SERVO_SPAN_DEG   (SERVO_MAX_DEG - SERVO_MIN_DEG)    // 300 degrees span (30-300 CCW)
-    #define SERVO_MIN_TICK   uint16_t(0)                        // min ticks 0 = 30 degrees
-    #define SERVO_MAX_TICK   uint16_t(1023)                     // max ticks 1023 = 300 degrees
+    #define SERVO_MIN_DEG   float(30.0)                        // start angle
+    #define SERVO_MAX_DEG   float(330.0)                       // end angle
+    #define SERVO_SPAN_DEG  (SERVO_MAX_DEG - SERVO_MIN_DEG)    // 300 degrees span (30-300 CCW)
+    #define SERVO_MIN_TICK  uint16_t(0)                        // min ticks 0 = 30 degrees
+    #define SERVO_MAX_TICK  uint16_t(1023)                     // max ticks 1023 = 300 degrees
 
     #include <Arduino.h>
 

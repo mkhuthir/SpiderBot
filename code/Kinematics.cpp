@@ -77,9 +77,8 @@ namespace IK {
                     / (2.0f * FEMUR_LENGTH * L);  
         cos_b = fminf(fmaxf(cos_b, -1.0f), 1.0f);                                           // Clamp for safety
         float angle_b = acosf(cos_b);                                                       // Angle between femur and line from coxa to tip
-        float knee_sign = -1.0f;                                                            // Choose knee sign (default, knee up > negative sign)
 
-        float femur_angle_rad = angle_a + knee_sign * angle_b;                              // Femur angle
+        float femur_angle_rad = angle_a + KNEE_DIR * angle_b;                               // Femur angle
         float femur_angle_deg = IK::wrap360(IK::rad2Deg(femur_angle_rad));                  // Radians to degrees and wrap
         if (!IK::deg2Tick(femur_angle_deg, positions[1])) {                                 // Degrees to ticks
             LOG_ERR("Femur angle out of range: " + String(femur_angle_deg) + "°");
@@ -90,7 +89,7 @@ namespace IK {
                     / (2.0f * FEMUR_LENGTH * TIBIA_LENGTH);
         cos_c = fminf(fmaxf(cos_c, -1.0f), 1.0f);                                           // Clamp for safety
 
-        float tibia_angle_rad = knee_sign * (M_PI - acosf(cos_c));                          // Tibia angle  
+        float tibia_angle_rad = KNEE_DIR * (M_PI - acosf(cos_c));                           // Tibia angle
         float tibia_angle_deg = IK::wrap360(IK::rad2Deg(tibia_angle_rad));                  // Radians to degrees and wrap
         if (!IK::deg2Tick(tibia_angle_deg, positions[2])) {                                 // Degrees to ticks
             LOG_ERR("Tibia angle out of range: " + String(tibia_angle_deg) + "°");
@@ -147,11 +146,14 @@ namespace IK {
 
     // Print kinematics status
     bool printStatus() {
-        PRINTLN("Kinematics System Status:");
+        PRINTLN("Kinematics System Status:\n\r");
         PRINTLN("COXA_LENGTH  : " + String(COXA_LENGTH) + " mm");
         PRINTLN("FEMUR_LENGTH : " + String(FEMUR_LENGTH) + " mm");
         PRINTLN("TIBIA_LENGTH : " + String(TIBIA_LENGTH) + " mm");
-        PRINTLN("Servo Range  : " + String(SERVO_MIN_DEG) + "° to " + String(SERVO_MAX_DEG) + "°"); 
+        PRINTLN("KNEE_DIR     : " + String(KNEE_DIR) + " (1: up, -1: down)");
+        PRINTLN("Servo Range  : " + String(SERVO_MIN_DEG) + " to " + String(SERVO_MAX_DEG) + "°");
+        PRINTLN("Servo Range  : " + String(SERVO_MIN_TICK) + " to " + String(SERVO_MAX_TICK) + " Ticks");
+        PRINTLN("");
         return true;
     }
 
