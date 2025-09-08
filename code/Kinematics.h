@@ -40,6 +40,11 @@
         bool            getFKLocal(uint16_t coxa, uint16_t femur, uint16_t tibia, float baseR, float* tip_local_x, float* tip_local_y, float* tip_local_z);
         bool            getFKGlobal(uint16_t coxa, uint16_t femur, uint16_t tibia, float baseX, float baseY, float baseZ, float baseR, float* tip_global_x, float* tip_global_y, float* tip_global_z);
 
+        // Console command handlers
+        bool      printStatus();                                                        // Print the status of the kinematics system
+        bool      runConsoleCommands(const String& cmd, const String& args);            // Process console commands for kinematics
+        bool      printConsoleHelp();                                                   // Print kinematics-specific help information
+
     }
 
 #endif // KINEMATICS_H

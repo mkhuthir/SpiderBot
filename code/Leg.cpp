@@ -182,11 +182,6 @@ bool Leg::setTipLocalPosition(float tip_local_x, float tip_local_y, float tip_lo
     LOG_ERR("Failed to compute inverse kinematics.");
     return false;
   }
-  
-  LOG_INF("Coxa Angle Tick: " + String(positions[0]));
-  LOG_INF("Femur Angle Tick: " + String(positions[1]));
-  LOG_INF("Tibia Angle Tick: " + String(positions[2]));
-
   return setServoPositions(positions[Coxa], positions[Femur], positions[Tibia]);
 }
 

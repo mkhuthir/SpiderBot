@@ -124,4 +124,38 @@ namespace IK {
         return true;
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Console command handlers
+    
+    // Print kinematics status
+    bool printStatus() {
+        PRINTLN("Kinematics System Status:");
+        PRINTLN("COXA_LENGTH  : " + String(COXA_LENGTH) + " mm");
+        PRINTLN("FEMUR_LENGTH : " + String(FEMUR_LENGTH) + " mm");
+        PRINTLN("TIBIA_LENGTH : " + String(TIBIA_LENGTH) + " mm");
+        PRINTLN("Servo Range  : " + String(SERVO_MIN_DEG) + "° to " + String(SERVO_MAX_DEG) + "°"); 
+        return true;
+    }
+
+    // Process console commands for kinematics
+    bool runConsoleCommands(const String& cmd, const String& args) {
+        if (cmd == "ks") {
+            printStatus();
+            return true;
+        } else if (cmd == "k?") {
+            printConsoleHelp();
+            return true;
+        }
+        return false;
+    }   
+
+    // Print kinematics-specific help information
+    bool printConsoleHelp() {
+        PRINTLN("Kinematics Commands:\n\r");
+        PRINTLN("  ks          - Print kinematics system status");
+        PRINTLN("  k?          - Print kinematics help information");
+        PRINTLN("");
+        return true;
+    }
+
 } // namespace IK
