@@ -4,11 +4,25 @@
 
 namespace IK {
 
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Utility Functions
+
+    // Convert radians [M_PI, -M_PI] to degrees [180, -180]
+    inline float    rad2Deg(float rad) {
+        return rad * 180.0f / M_PI; 
+    }
+
+    // Convert degrees [-180, 180] to radians [-M_PI, M_PI]
+    inline float    deg2Rad(float deg) {
+        return deg * M_PI / 180.0f; 
+    }
+
     // 180° rotation and mirror.
     float wrap360(float deg) {
         return fmodf((180.0f - deg), 360.0f);
     }
 
+    // Convert degrees [30, 330] to ticks [0, 1023]
     bool deg2Tick(float deg, uint16_t &tick) {
         if (deg < SERVO_MIN_DEG || deg > SERVO_MAX_DEG) return false;
         float t = (deg - SERVO_MIN_DEG) * (SERVO_MAX_TICK / SERVO_SPAN_DEG);
@@ -18,18 +32,21 @@ namespace IK {
         return true;
     }
 
+    // Convert ticks [0, 1023] to degrees [30, 330]
     bool tick2Deg(uint16_t tick, float &deg) {
         if (tick < SERVO_MIN_TICK || tick > SERVO_MAX_TICK) return false;
         deg = SERVO_MIN_DEG + (static_cast<float>(tick) * SERVO_SPAN_DEG / SERVO_MAX_TICK);
         return true;
     }
 
+    // Coordinate Transformations from body global coordinates to leg local coordinates
     void global2Local(float global_x, float global_y, float global_z, float baseX, float baseY, float baseZ, float* local_x, float* local_y, float* local_z) {
         *local_x = global_x - baseX;
         *local_y = global_y - baseY;
         *local_z = global_z - baseZ;
     }
 
+    // Coordinate Transformations from leg local coordinates to body global coordinates
     void local2Global(float local_x, float local_y, float local_z, float baseX, float baseY, float baseZ, float* global_x, float* global_y, float* global_z) {
         *global_x = baseX + local_x;
         *global_y = baseY + local_y;
@@ -114,6 +131,7 @@ namespace IK {
         return true;
     }
 
+    // Global Forward Kinematics
     bool getFKGlobal(uint16_t coxa, uint16_t femur, uint16_t tibia, float baseX, float baseY, float baseZ, float baseR, float* tip_global_x, float* tip_global_y, float* tip_global_z) {
         float tip_local_x = 0.0f, tip_local_y = 0.0f, tip_local_z = 0.0f;
         // Compute local tip position using FK
@@ -126,7 +144,7 @@ namespace IK {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Console command handlers
-    
+
     // Print kinematics status
     bool printStatus() {
         PRINTLN("Kinematics System Status:");
