@@ -17,14 +17,9 @@ namespace IK {
         return deg * M_PI / 180.0f; 
     }
 
-    // 180° to 360° rotation and mirror.
-    float wrap180to360(float deg) {
+    // 180° rotation and mirror.
+    float wrap360(float deg) {
         return fmodf((180.0f - deg), 360.0f);
-    }
-
-    // 360° to 180° rotation and mirror.
-    float wrap360to180(float deg) {
-        return 180.0f - deg;
     }
 
     // Convert degrees [30, 330] to ticks [0, 1023]
@@ -61,16 +56,11 @@ namespace IK {
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Local Inverse Kinematics
     bool getIKLocal(float tip_local_x, float tip_local_y, float tip_local_z, float baseR, uint16_t* positions) {
-
+        
         float coxa_angle_rad = atan2f(tip_local_y, tip_local_x);                            // Coxa yaw (rotation in XY plane)
-        float coxa_angle_deg  = IK::wrap180to360(IK::rad2Deg(coxa_angle_rad) - baseR);           // Radians to degrees and wrap
+        float coxa_angle_deg  = IK::wrap360(IK::rad2Deg(coxa_angle_rad) - baseR);           // Radians to degrees and wrap
         if (!IK::deg2Tick(coxa_angle_deg,  positions[0])) {                                 // Degrees to ticks
-            LOG_ERR("Coxa angle out of range: " 
-                
-                // 180° rotation and mirror.
-    float wrap360to180(float deg) {
-        return fmodf((180.0f - deg + 360.0f), 360.0f) - 180.0f;
-    }+ String(coxa_angle_deg) + "°");
+            LOG_ERR("Coxa angle out of range: " + String(coxa_angle_deg) + "°");
             return false;                     
         }
 
@@ -89,14 +79,9 @@ namespace IK {
         float angle_b = acosf(cos_b);                                                       // Angle between femur and line from coxa to tip
 
         float femur_angle_rad = angle_a + KNEE_DIR * angle_b;                               // Femur angle
-        float femur_angle_deg = IK::wrap180to360(IK::rad2Deg(femur_angle_rad));                  // Radians to degrees and wrap
+        float femur_angle_deg = IK::wrap360(IK::rad2Deg(femur_angle_rad));                  // Radians to degrees and wrap
         if (!IK::deg2Tick(femur_angle_deg, positions[1])) {                                 // Degrees to ticks
-            LOG_ERR("Femur angle out of range: "
-                
-                // 180° rotation and mirror.
-    float wrap360to180(float deg) {
-        return fmodf((180.0f - deg + 360.0f), 360.0f) - 180.0f;
-    }+ String(femur_angle_deg) + "°");
+            LOG_ERR("Femur angle out of range: " + String(femur_angle_deg) + "°");
             return false;
         }
 
@@ -105,14 +90,9 @@ namespace IK {
         cos_c = fminf(fmaxf(cos_c, -1.0f), 1.0f);                                           // Clamp for safety
 
         float tibia_angle_rad = KNEE_DIR * (M_PI - acosf(cos_c));                           // Tibia angle
-        float tibia_angle_deg = IK::wrap180to360(IK::rad2Deg(tibia_angle_rad));                  // Radians to degrees and wrap
+        float tibia_angle_deg = IK::wrap360(IK::rad2Deg(tibia_angle_rad));                  // Radians to degrees and wrap
         if (!IK::deg2Tick(tibia_angle_deg, positions[2])) {                                 // Degrees to ticks
-            LOG_ERR("Tibia angle out of range: "
-                
-                // 180° rotation and mirror.
-    float wrap360to180(float deg) {
-        return fmodf((180.0f - deg + 360.0f), 360.0f) - 180.0f;
-    }+ String(tibia_angle_deg) + "°");
+            LOG_ERR("Tibia angle out of range: " + String(tibia_angle_deg) + "°");
             return false;
         }
 
@@ -129,16 +109,22 @@ namespace IK {
     // Local Forward Kinematics
     bool getFKLocal(uint16_t coxa, uint16_t femur, uint16_t tibia, float baseR, float* tip_local_x, float* tip_local_y, float* tip_local_z) {
         
+        LOG_INF("getFKLocal: input ticks: coxa=" + String(coxa) + ", femur=" + String(femur) + ", tibia=" + String(tibia));
+        LOG_INF("getFKLocal: input baseR (deg): " + String(baseR));
     // Convert ticks to degrees using utility
     float coxa_angle_deg, femur_angle_deg, tibia_angle_deg;
     if (!IK::tick2Deg(coxa, coxa_angle_deg)) return false;
     if (!IK::tick2Deg(femur, femur_angle_deg)) return false;
     if (!IK::tick2Deg(tibia, tibia_angle_deg)) return false;
 
+        LOG_INF("getFKLocal: coxa_angle_deg=" + String(coxa_angle_deg) + ", femur_angle_deg=" + String(femur_angle_deg) + ", tibia_angle_deg=" + String(tibia_angle_deg));
+
     // Convert degrees to radians
     float coxa_angle_rad  = IK::deg2Rad(coxa_angle_deg - baseR);
     float femur_angle_rad = IK::deg2Rad(femur_angle_deg);
     float tibia_angle_rad = IK::deg2Rad(tibia_angle_deg);
+
+        LOG_INF("getFKLocal: coxa_angle_rad=" + String(coxa_angle_rad) + ", femur_angle_rad=" + String(femur_angle_rad) + ", tibia_angle_rad=" + String(tibia_angle_rad));
 
     // Planar FK for femur and tibia (match IK reference)
     float planar_length = FEMUR_LENGTH * cos(femur_angle_rad)
@@ -146,10 +132,14 @@ namespace IK {
     float z = FEMUR_LENGTH * sin(femur_angle_rad)
            + TIBIA_LENGTH * sin(femur_angle_rad + tibia_angle_rad);
 
+        LOG_INF("getFKLocal: planar_length=" + String(planar_length) + ", z=" + String(z));
+
     // Tip position in leg base frame
     *tip_local_x = COXA_LENGTH * cos(coxa_angle_rad) + planar_length * cos(coxa_angle_rad);
     *tip_local_y = COXA_LENGTH * sin(coxa_angle_rad) + planar_length * sin(coxa_angle_rad);
     *tip_local_z = z;
+
+        LOG_INF("getFKLocal: tip_local_x=" + String(*tip_local_x) + ", tip_local_y=" + String(*tip_local_y) + ", tip_local_z=" + String(*tip_local_z));
 
     return true;
     }
