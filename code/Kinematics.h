@@ -19,7 +19,8 @@
         // Utility Functions
         inline float    rad2Deg(float rad);                     // Convert radians [M_PI, -M_PI] to degrees [180, -180]
         inline float    deg2Rad(float deg);                     // Convert degrees [-180, 180] to radians [-M_PI, M_PI]
-        float           wrap360(float deg);                     // Wrap angle from [180, -180] to [0, 360]
+        float           wrap180to360(float deg);                // Wrap angle from [180, -180] to [0, 360]
+        float           wrap360to180(float deg);                // Wrap angle from [0, 360] to [180, -180]
         bool            deg2Tick(float deg, uint16_t &tick);    // Convert degrees [30, 330] to ticks [0, 1023]
         bool            tick2Deg(uint16_t tick, float &deg);    // Convert ticks [0, 1023] to degrees [30, 330]
 
