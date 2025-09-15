@@ -153,12 +153,14 @@ namespace IK {
     // Print kinematics status
     bool printStatus() {
         PRINTLN("Kinematics System Status:\n\r");
-        PRINTLN("COXA_LENGTH  : " + String(COXA_LENGTH) + " mm");
-        PRINTLN("FEMUR_LENGTH : " + String(FEMUR_LENGTH) + " mm");
-        PRINTLN("TIBIA_LENGTH : " + String(TIBIA_LENGTH) + " mm");
-        PRINTLN("KNEE_DIR     : " + String(KNEE_DIR) + " (1: up, -1: down)");
-        PRINTLN("Servo Range  : " + String(SERVO_MIN_DEG) + " to " + String(SERVO_MAX_DEG) + "°");
-        PRINTLN("Servo Range  : " + String(SERVO_MIN_TICK) + " to " + String(SERVO_MAX_TICK) + " Ticks");
+        PRINTLN("Coxa Length    : " + String(COXA_LENGTH) + " mm");
+        PRINTLN("Femur Length   : " + String(FEMUR_LENGTH) + " mm");
+        PRINTLN("Tibia Length   : " + String(TIBIA_LENGTH) + " mm");
+        PRINTLN("");
+        PRINTLN("Knee Direction : " + String(KNEE_DIR) + " (1: up, -1: down)");
+        PRINTLN("");
+        PRINTLN("Servo Range    : " + String(SERVO_MIN_DEG) + " to " + String(SERVO_MAX_DEG) + "°");
+        PRINTLN("Servo Range    : " + String(SERVO_MIN_TICK) + " to " + String(SERVO_MAX_TICK) + " Ticks");
         PRINTLN("");
         return true;
     }
