@@ -18,7 +18,7 @@ namespace IK {
     }
 
     // 180° rotation and mirror.
-    float wrap360(float deg) {
+    float wrap180to360(float deg) {
         return fmodf((180.0f - deg), 360.0f);
     }
 
@@ -58,7 +58,7 @@ namespace IK {
     bool getIKLocal(float tip_local_x, float tip_local_y, float tip_local_z, float baseR, uint16_t* positions) {
         
         float coxa_angle_rad = atan2f(tip_local_y, tip_local_x);                            // Coxa yaw (rotation in XY plane)
-        float coxa_angle_deg  = IK::wrap360(IK::rad2Deg(coxa_angle_rad) - baseR);           // Radians to degrees and wrap
+        float coxa_angle_deg  = IK::wrap180to360(IK::rad2Deg(coxa_angle_rad) - baseR);      // Radians to degrees and wrap
         if (!IK::deg2Tick(coxa_angle_deg,  positions[0])) {                                 // Degrees to ticks
             LOG_ERR("Coxa angle out of range: " + String(coxa_angle_deg) + "°");
             return false;                     
@@ -79,7 +79,7 @@ namespace IK {
         float angle_b = acosf(cos_b);                                                       // Angle between femur and line from coxa to tip
 
         float femur_angle_rad = angle_a + KNEE_DIR * angle_b;                               // Femur angle
-        float femur_angle_deg = IK::wrap360(IK::rad2Deg(femur_angle_rad));                  // Radians to degrees and wrap
+        float femur_angle_deg = IK::wrap180to360(IK::rad2Deg(femur_angle_rad));             // Radians to degrees and wrap
         if (!IK::deg2Tick(femur_angle_deg, positions[1])) {                                 // Degrees to ticks
             LOG_ERR("Femur angle out of range: " + String(femur_angle_deg) + "°");
             return false;
@@ -90,7 +90,7 @@ namespace IK {
         cos_c = fminf(fmaxf(cos_c, -1.0f), 1.0f);                                           // Clamp for safety
 
         float tibia_angle_rad = KNEE_DIR * (M_PI - acosf(cos_c));                           // Tibia angle
-        float tibia_angle_deg = IK::wrap360(IK::rad2Deg(tibia_angle_rad));                  // Radians to degrees and wrap
+        float tibia_angle_deg = IK::wrap180to360(IK::rad2Deg(tibia_angle_rad));             // Radians to degrees and wrap
         if (!IK::deg2Tick(tibia_angle_deg, positions[2])) {                                 // Degrees to ticks
             LOG_ERR("Tibia angle out of range: " + String(tibia_angle_deg) + "°");
             return false;
