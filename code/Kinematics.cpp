@@ -9,32 +9,56 @@ namespace IK {
 
     // Convert radians [M_PI, -M_PI] to degrees [180, -180]
     inline float    rad2Deg(float rad) {
+        if (rad < -M_PI || rad > M_PI) {
+            LOG_ERR("Angle out of range: " + String(rad) + " rad");
+            return -1; // out of range
+        }
         return rad * 180.0f / M_PI; 
     }
 
     // Convert degrees [-180, 180] to radians [-M_PI, M_PI]
     inline float    deg2Rad(float deg) {
+        if (deg < -180.0f || deg > 180.0f) {
+            LOG_ERR("Angle out of range: " + String(deg) + "°");
+            return -1; // out of range
+        }
         return deg * M_PI / 180.0f; 
     }
 
-    // 180° rotation and mirror.
+    // wrap angles from 180° to 360° (rotation and mirror).
     float wrap180to360(float deg) {
+        if (deg < -180.0f || deg > 180.0f) {
+            LOG_ERR("Angle out of range: " + String(deg) + "°");
+            return -1; // out of range
+        }
         return fmodf((180.0f - deg), 360.0f);
+    }
+
+    // wrap angles from 360° to 180° (rotation and mirror).
+    float wrap360to180(float deg) {
+        if (deg < 0.0f || deg > 360.0f) {
+            LOG_ERR("Angle out of range: " + String(deg) + "°");
+            return -1; // out of range
+        }
+        return 180.0f - deg;
     }
 
     // Convert degrees [30, 330] to ticks [0, 1023]
     bool deg2Tick(float deg, uint16_t &tick) {
-        if (deg < SERVO_MIN_DEG || deg > SERVO_MAX_DEG) return false;
-        float t = (deg - SERVO_MIN_DEG) * (SERVO_MAX_TICK / SERVO_SPAN_DEG);
-        if (t < SERVO_MIN_TICK) t = SERVO_MIN_TICK;
-        if (t > SERVO_MAX_TICK) t = SERVO_MAX_TICK;
-        tick = static_cast<uint16_t>(lroundf(t));
+        if (deg < SERVO_MIN_DEG || deg > SERVO_MAX_DEG) {
+            LOG_ERR("Angle out of range: " + String(deg) + "°");
+            return false;
+        }
+        tick = static_cast<uint16_t>(lroundf(deg - SERVO_MIN_DEG) * (SERVO_MAX_TICK / SERVO_SPAN_DEG));
         return true;
     }
 
     // Convert ticks [0, 1023] to degrees [30, 330]
     bool tick2Deg(uint16_t tick, float &deg) {
-        if (tick < SERVO_MIN_TICK || tick > SERVO_MAX_TICK) return false;
+        if (tick < SERVO_MIN_TICK || tick > SERVO_MAX_TICK) {
+            LOG_ERR("Tick out of range: " + String(tick) + " Ticks");
+            return false;
+        }
         deg = SERVO_MIN_DEG + (static_cast<float>(tick) * SERVO_SPAN_DEG / SERVO_MAX_TICK);
         return true;
     }
