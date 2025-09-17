@@ -175,8 +175,8 @@ namespace IK {
             float baseX = 0.0f, baseY = 0.0f, baseZ = 0.0f, baseR = 0.0f;
             uint16_t coxa = 0, femur = 0, tibia = 0;
             if (sscanf(args.c_str(), "%hu %hu %hu", &coxa, &femur, &tibia) != 3) {
-                LOG_ERR("Invalid arguments. Usage: kf C F T R");
-                return false;
+                LOG_ERR("Invalid arguments. Usage: kf C F T");
+                return true;
             }
             float tipX = 0.0f, tipY = 0.0f, tipZ = 0.0f;
             if (getFKGlobal(coxa, femur, tibia, baseX, baseY, baseZ, baseR, &tipX, &tipY, &tipZ)) {
@@ -189,8 +189,8 @@ namespace IK {
         } else if (cmd == "ki") {
             float tipX = 0.0f, tipY = 0.0f, tipZ = 0.0f, baseX = 0.0f, baseY = 0.0f, baseZ = 0.0f, baseR = 0.0f;
             if (sscanf(args.c_str(), "%f %f %f", &tipX, &tipY, &tipZ) != 3) {
-                LOG_ERR("Invalid arguments. Usage: ki X Y Z R");
-                return false;
+                LOG_ERR("Invalid arguments. Usage: ki X Y Z");
+                return true;
             }
             uint16_t positions[3] = {0};
             if (getIKGlobal(tipX, tipY, tipZ, baseX, baseY, baseZ, baseR, positions)) {
@@ -199,6 +199,7 @@ namespace IK {
                 LOG_ERR("IK computation failed.");
             }
             return true;
+
         } else if (cmd == "k?") {
             printConsoleHelp();
             return true;
