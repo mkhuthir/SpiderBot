@@ -170,6 +170,35 @@ namespace IK {
         if (cmd == "ks") {
             printStatus();
             return true;
+
+        } else if (cmd == "kf") {
+            float baseX = 0.0f, baseY = 0.0f, baseZ = 0.0f, baseR = 0.0f;
+            uint16_t coxa = 0, femur = 0, tibia = 0;
+            if (sscanf(args.c_str(), "%hu %hu %hu", &coxa, &femur, &tibia) != 3) {
+                LOG_ERR("Invalid arguments. Usage: kf C F T R");
+                return false;
+            }
+            float tipX = 0.0f, tipY = 0.0f, tipZ = 0.0f;
+            if (getFKGlobal(coxa, femur, tibia, baseX, baseY, baseZ, baseR, &tipX, &tipY, &tipZ)) {
+                PRINTLN("FK Result - Tip Position: X=" + String(tipX) + " mm, Y=" + String(tipY) + " mm, Z=" + String(tipZ) + " mm");
+            } else {
+                LOG_ERR("FK computation failed.");
+            }
+            return true;
+
+        } else if (cmd == "ki") {
+            float tipX = 0.0f, tipY = 0.0f, tipZ = 0.0f, baseX = 0.0f, baseY = 0.0f, baseZ = 0.0f, baseR = 0.0f;
+            if (sscanf(args.c_str(), "%f %f %f", &tipX, &tipY, &tipZ) != 3) {
+                LOG_ERR("Invalid arguments. Usage: ki X Y Z R");
+                return false;
+            }
+            uint16_t positions[3] = {0};
+            if (getIKGlobal(tipX, tipY, tipZ, baseX, baseY, baseZ, baseR, positions)) {
+                PRINTLN("IK Result - Servo Positions: Coxa=" + String(positions[0]) + " Ticks, Femur=" + String(positions[1]) + " Ticks, Tibia=" + String(positions[2]) + " Ticks");
+            } else {
+                LOG_ERR("IK computation failed.");
+            }
+            return true;
         } else if (cmd == "k?") {
             printConsoleHelp();
             return true;
@@ -181,6 +210,8 @@ namespace IK {
     bool printConsoleHelp() {
         PRINTLN("Kinematics Commands:\n\r");
         PRINTLN("  ks          - Print kinematics system status");
+        PRINTLN("  kf C F T    - Perform forward kinematics");
+        PRINTLN("  ki X Y Z    - Perform inverse kinematics");
         PRINTLN("  k?          - Print kinematics help information");
         PRINTLN("");
         return true;
